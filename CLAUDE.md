@@ -10,7 +10,7 @@ Athena — переносимая агентная ОС: разворот все
 - `chezmoi/` — шаблоны дотфайлов Сознания (улучшенный канон из best-practices vault).
 - `skills/{setup-os,bootstrap-project,organize,athena-update}` — рождение ОС, каркас проекта, авто-раскладка, безопасное обновление живой системы (анализ→план→согласование→действие, бэкап+откат, `.athena-version`-стамп).
 - `claude-starter/` — эталон проекта, который Athena ставит конечному юзеру.
-- `secrets-checklist.md` · `mcp-reauth.md` · `launchd/` · `smoke/` · `Brewfile` · `athena.config.example.sh`.
+- `SECURITY.md` · `mcp-reauth.md` · `launchd/` · `smoke/` · `Brewfile` · `athena.config.example.sh`.
 - `specs/` — фазовый план (читать первым). `docs/decisions/` — ADR.
 
 ## Команды

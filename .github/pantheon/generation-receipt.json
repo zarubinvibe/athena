@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "kind": "pantheon-generation",
+  "selection_mode": "managed-frontier",
+  "runtime": "codex",
+  "tool": "image_gen",
+  "route_id": "codex:image_gen:managed-frontier",
+  "model": {
+    "id": "provider-managed",
+    "revision": "provider-managed",
+    "tier": "frontier"
+  },
+  "quality": "highest",
+  "generation_id": "01a03e74-7015-7312-9470-0ad84f16b23f",
+  "generated_at": "2026-08-26T14:30:19.000Z",
+  "capability_snapshot": {
+    "checked_at": "2026-08-26T14:33:26.000Z",
+    "routes": [
+      {
+        "id": "codex:image_gen:managed-frontier",
+        "rank": 1,
+        "available": true,
+        "tier": "frontier",
+        "quality": "highest",
+        "model": {
+          "id": "provider-managed",
+          "revision": "provider-managed",
+          "tier": "frontier"
+        }
+      }
+    ]
+  },
+  "prompt": {
+    "path": ".github/pantheon/prompt.txt",
+    "sha256": "c7c5d286ec64eac49c673e4f12dc6ff77324dd33cf0491df7edf972a3d7ed679"
+  },
+  "references": [
+    {
+      "role": "style-anchor",
+      "sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2"
+    },
+    {
+      "role": "column-reference",
+      "sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "codex-managed",
+      "route_id": "codex:image_gen:managed-frontier",
+      "generation_id": "01a03e74-7015-7312-9470-0ad84f16b23f",
+      "prompt_sha256": "c7c5d286ec64eac49c673e4f12dc6ff77324dd33cf0491df7edf972a3d7ed679",
+      "reference_sha256": [
+        "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
+        "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+      ],
+      "outputs": [
+        {
+          "role": "hero",
+          "source_sha256": "b683878e127c07c09d141b1f4461a1c6169a19cb882ab2936d2241d54b35b934",
+          "published_sha256": "b683878e127c07c09d141b1f4461a1c6169a19cb882ab2936d2241d54b35b934"
+        },
+        {
+          "role": "emblem",
+          "source_sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295",
+          "published_sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295"
+        }
+      ]
+    }
+  ],
+  "managed_outputs": [
+    {
+      "role": "hero",
+      "artifact_id": "exec-0b58bb2f-f48f-484b-ae01-be151b261728",
+      "native_dimensions": "1672x941"
+    },
+    {
+      "role": "emblem",
+      "artifact_id": "exec-39d10dfe-b2ec-4745-906b-999cd921d83c",
+      "native_dimensions": "1254x1254"
+    }
+  ],
+  "postprocess": {
+    "tool": "sips",
+    "operation": "resize only",
+    "semantic_edits": false,
+    "hero_dimensions": "3840x2160",
+    "emblem_dimensions": "2048x2048"
+  },
+  "winner_id": "codex-managed"
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 2,
+  "family_id": "zarubinvibe-pantheon",
+  "catalog_version": "2026-08-26",
+  "project": {
+    "slug": "athena",
+    "deity": "Athena",
+    "symbol": "owl, round shield, and thin knowledge diagrams"
+  },
+  "visuals": {
+    "style_anchor_sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
+    "column_reference_sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd",
+    "hero": {
+      "source_path": "docs/assets/pantheon/hero.png",
+      "source_sha256": "b683878e127c07c09d141b1f4461a1c6169a19cb882ab2936d2241d54b35b934",
+      "published_path": "docs/assets/pantheon/hero.png",
+      "published_sha256": "b683878e127c07c09d141b1f4461a1c6169a19cb882ab2936d2241d54b35b934"
+    },
+    "emblem": {
+      "source_path": "docs/assets/pantheon/emblem.png",
+      "source_sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295",
+      "published_path": "docs/assets/pantheon/emblem.png",
+      "published_sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295"
+    }
+  },
+  "receipts": {
+    "generation_path": ".github/pantheon/generation-receipt.json",
+    "visual_judge_path": ".github/pantheon/visual-judge-receipt.json"
+  }
+}

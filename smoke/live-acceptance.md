@@ -14,7 +14,7 @@
 
 ### Шаг 0 — preinstall (Терминал, руками)
 ```sh
-curl -fsSL https://raw.githubusercontent.com/zarubinphil/athena/main/preinstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash
 ```
 Наблюдать:
 - [ ] xcode-select поп-ап появился, скрипт **ждёт** его (не летит дальше), затем продолжил.

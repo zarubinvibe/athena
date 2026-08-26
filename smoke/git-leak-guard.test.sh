@@ -5,6 +5,10 @@ set -uo pipefail
 GUARD="${1:-$(cd "$(dirname "$0")/.." && pwd)/chezmoi/dot_claude/hooks/git-leak-guard.sh}"
 [ -f "$GUARD" ] || { echo "guard not found: $GUARD" >&2; exit 1; }
 
+# Temp-repo must not inherit user hooks or aliases from the host machine.
+export GIT_CONFIG_GLOBAL=/dev/null
+export GIT_CONFIG_SYSTEM=/dev/null
+
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 git -C "$TMP" init -q
 git -C "$TMP" config user.email t@t; git -C "$TMP" config user.name t

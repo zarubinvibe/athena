@@ -2,7 +2,7 @@
 # Athena — Шаг 0 (руками в Терминале). Единственное, что агент не может: brew нужен пароль Mac.
 # Ставит: Homebrew + базовые CLI + Claude Code. Дальше всё ведёт Claude (/setup-os).
 # Идемпотентно: повторный запуск ничего не ломает.
-#   curl -fsSL https://raw.githubusercontent.com/zarubinphil/athena/main/preinstall.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash
 set -euo pipefail
 
 say() { printf '\033[1;36m▸ %s\033[0m\n' "$*"; }
@@ -48,7 +48,7 @@ command -v claude >/dev/null || npm install -g @anthropic-ai/claude-code@2.1.183
 ok "Claude Code готов"
 
 # 6. Клон репо Athena (нужен для /setup-os). Идемпотентно.
-[ -d "$HOME/athena/.git" ] || git clone https://github.com/zarubinphil/athena "$HOME/athena"
+[ -d "$HOME/athena/.git" ] || git clone https://github.com/zarubinvibe/athena "$HOME/athena"
 ok "репо Athena в ~/athena"
 
 cat <<'DONE'

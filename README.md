@@ -1,197 +1,180 @@
-<p align="center">
-  <img src="docs/assets/hero.png" alt="Athena — a portable agent operating system" width="100%">
-</p>
+# Athena
 
-<h1 align="center">Athena</h1>
+Athena is a portable agent OS for macOS that rebuilds a Claude Code and Codex workspace from versioned templates, manifests, and checks.
 
-<p align="center">
-  <strong>Set up your entire AI workspace on a brand-new Mac with one command.</strong><br>
-  From the rules your assistant follows to the live tools it runs — rebuilt in minutes, identically, every time.
-</p>
+[Russian](README.ru.md) | [Feature reference](docs/FEATURES.en.md) | [Quickstart](#quickstart) | [Security](#security-and-privacy) | [Contributing](CONTRIBUTING.md)
 
 <p align="center">
-  🇬🇧 English · <a href="README.ru.md">🇷🇺 Русский</a>
+  <img src="docs/assets/pantheon/emblem.png" width="144" alt="Athena marble emblem with an owl, round shield, knowledge lines, and classical column">
 </p>
 
----
+![Athena marble hero with an owl, round shield, layered knowledge planes, and classical column](docs/assets/pantheon/hero.png)
 
-**Two steps and you're done.**
+Status: public macOS reference implementation. Automated checks cover shell syntax, templates, repository hygiene, agent contracts, and generic clean-room rendering. A complete first install on a fresh Mac still needs the manual acceptance checklist.
 
-**Step 1** — paste this into Terminal. It'll ask for your Mac password once; that's fine.
+## Quickstart
+
+Athena targets macOS. The setup needs an administrator account and network access for Homebrew, npm, and Git repositories.
+
+### Reviewable install
+
+Clone the repository, inspect the installer, then run it:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zarubinphil/athena/main/preinstall.sh | bash
+git clone https://github.com/zarubinvibe/athena.git "$HOME/athena"
+cd "$HOME/athena"
+less preinstall.sh
+./preinstall.sh
 ```
 
-That brings in Homebrew, a few CLIs, and Claude Code. It's the only part you do by hand — Homebrew wants a password, and an agent can't type one.
+The installer sets up Xcode Command Line Tools, Homebrew, chezmoi, Node.js, Git, and a pinned Claude Code CLI. It leaves the repository at `~/athena`.
 
-**Step 2** — grab the repo, open Claude, and just answer what it asks.
+Start Claude Code from the repository and enter `/setup-os`:
 
 ```bash
-git clone https://github.com/zarubinphil/athena ~/athena && cd ~/athena
+cd "$HOME/athena"
 claude
-# then type:  /setup-os
 ```
 
-From here `/setup-os` builds the system layer by layer and pops up a question whenever there's a choice — GitHub? Firecrawl? a knowledge vault? Say no to anything you don't want; you can add it any time later.
+`/setup-os` asks which integrations and personal layers you want, writes the selected configuration, and runs the bootstrap layers. Choices can be skipped and added later.
 
-> Already know your way around? `cp athena.config.example.sh athena.config.sh`, then `./bootstrap.sh` runs the engine straight, no Claude needed (`--dry-run` to look first).
+For a fresh Mac, the direct installer runs the same tracked script without a local review step:
 
----
+```bash
+curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash
+```
 
-## What is this, really?
+If the required tools already exist, preview the engine before applying anything:
 
-A modern AI assistant is only as good as the workspace around it — the rules it follows, the habits it has, the projects it can see, the notes it can recall, the tools it can reach. Build that workspace by hand and it slowly sprawls into hundreds of small files scattered across your machine. Then you buy a new Mac, and you get to rebuild all of it from memory. It never comes out quite the same.
+```bash
+cd "$HOME/athena"
+cp athena.config.example.sh athena.config.sh
+./bootstrap.sh --dry-run
+```
 
-**Athena packs that whole workspace into a single, repeatable recipe.** Run one command and it lays everything back down in the right order: the tools, the rules, the projects, the knowledge, the background helpers. Like restoring a phone from a backup — but for your entire way of working with AI.
+## What Athena builds
 
-It isn't built from scratch on a hunch. Athena stands on proven ideas from people who do this seriously:
+`bootstrap.sh` runs ordered, repeatable layers. Use `--only=<layer>` to run one slice.
 
-- The **Knowledge** part follows the *synthesis-on-write* approach popularized by **Andrej Karpathy** — you don't just dump notes, you distill them as you save, so what you keep is genuinely useful later.
-- The **setup** is driven by [**chezmoi**](https://www.chezmoi.io/), the well-known dotfile manager, so your configuration is versioned and portable instead of hand-copied.
-- The whole thing is **idempotent** — a fancy word for *safe to run again and again*. It converges to the same result; it never piles up duplicates.
+| Layer | Responsibility |
+|---|---|
+| `0` | Install the Homebrew tool baseline from `Brewfile`. |
+| `0b` | Clone optional tools from `tools.manifest`. |
+| `1` | Merge public chezmoi templates with an optional private overlay, then apply the result. |
+| `1b` | Reinstall declared Claude Code marketplaces and plugins. |
+| `2` | Rebuild and validate the local capability registry. |
+| `3` | Clone projects listed in `projects.manifest`. |
+| `4` | Restore an optional knowledge vault. |
+| `5` | Prepare secret storage, show MCP reauthentication work, and register launchd jobs. |
+| `6` | Run repository and installed-state smoke checks. |
 
-The payoff is simple: a correct system, stood up from zero in minutes, that keeps supporting your work — and quietly **saves you tokens** every day (more on that below).
+The layout keeps three kinds of state apart:
 
----
-
-## What happens when you run it
-
-<p align="center">
-  <img src="docs/assets/journey.png" alt="One command turns an empty Mac into a complete system" width="92%">
-</p>
-
-You start with an empty Mac and type one command. Athena does the rest, step by step — every step automatic, ordered, and checked. If anything fails to start, the run stops and tells you; you never end up with a half-built machine that pretends it's fine.
-
-<p align="center">
-  <img src="docs/assets/journey-diagram.png" alt="Step-by-step: empty Mac to working system" width="100%">
-</p>
-
----
-
-## The big idea: three planes, never mixed
-
-<p align="center">
-  <img src="docs/assets/three-planes.png" alt="The three planes: Consciousness, Knowledge, Work" width="92%">
-</p>
-
-Everything you own lives in exactly one of three "planes." Keeping them apart is what stops the mess: temporary clutter never pollutes your rules, secrets never touch your code, and notes never get lost inside project folders.
-
-<p align="center">
-  <img src="docs/assets/planes-diagram.png" alt="Consciousness, Knowledge and Work — the three planes" width="100%">
-</p>
-
-| Plane | In plain terms | Where it lives |
+| Plane | Contents | Default location |
 |---|---|---|
-| **Consciousness** | how your assistant thinks and behaves | `~/.claude` · `~/.codex` · `~/.agents` |
-| **Knowledge** | your personal, distilled library | `~/Мозг` |
-| **Work** | your actual projects and files | `~/Проекты` · `~/Хранилище` · `~/Архив` |
+| Consciousness | Agent rules, skills, hooks, and registries | `~/.claude`, `~/.codex`, `~/.agents` |
+| Knowledge | Personal notes and synthesized reference material | `~/Мозг` |
+| Work | Projects, active files, and archives | Configured under `$HOME` |
 
-The rules for *what goes where* live inside the system itself, so it grows tidily instead of turning into a junk drawer.
+The public repository contains generic templates and examples. Personal repositories, filled manifests, credentials, and knowledge content stay in an optional private overlay. Generic-only setup remains a supported path.
 
----
+## Examples
 
-## How it builds: six calm layers
-
-<p align="center">
-  <img src="docs/assets/six-layers.png" alt="Six layers stacking into one system" width="92%">
-</p>
-
-The setup script builds your machine from the ground up in ordered layers — like assembling floors of a building. Each layer is safe to repeat, and you can run just one if you want.
-
-<p align="center">
-  <img src="docs/assets/layers-diagram.png" alt="The layers, from Base to Checks" width="100%">
-</p>
-
-| Layer | What it sets up |
-|---|---|
-| **0 · Base** | the core command-line tools (`claude`, `codex`, `git`, `node`, `python`…) |
-| **0b · Tools** | extra tools like bots, placed before the rules so they can wire themselves up |
-| **1 · Consciousness** | your assistant's rules, habits, and helpers |
-| **2 · Registry** | a searchable map of every skill and tool, so the right one is found fast |
-| **3 · Work** | clones and installs your projects |
-| **4 · Knowledge** | restores your personal library |
-| **5 · Runtime** | secrets (kept in the macOS Keychain) and background helpers |
-| **6 · Checks** | runs final checks to prove the whole thing actually works |
+Preview every layer or run one layer:
 
 ```bash
-./bootstrap.sh --only=1     # run a single layer
-./bootstrap.sh --dry-run    # show everything, change nothing
+./bootstrap.sh --dry-run
+./bootstrap.sh --only=1
+./bootstrap.sh --only=6
 ```
 
----
-
-## Share the structure, keep your secrets
-
-<p align="center">
-  <img src="docs/assets/merge.png" alt="A public stream and a private stream merging into one" width="92%">
-</p>
-
-Here's the tricky part of sharing a personal setup: the *structure* is worth opening up, but the *contents* — your secrets, your private notes — are not. Athena solves it by blending two sources at setup time: a **public** skeleton (this repo) and your own **private** layer. They merge into one, and your private layer always wins.
-
-<p align="center">
-  <img src="docs/assets/merge-diagram.png" alt="Public skeleton plus private layer blend into your machine" width="100%">
-</p>
-
-- Skip the private layer → you still get a complete, working **public-only** setup.
-- Add it → your personal details are layered in on top.
-- A built-in guard **fails the build** if any personal data ever slips into a public file. The boundary is enforced, not just hoped for.
-
-This repository is the **public skeleton**. It contains zero personal data — no secrets, no private content, no hardcoded paths.
-
----
-
-## Why it saves you tokens
-
-<p align="center">
-  <img src="docs/assets/token-economy.png" alt="A tidy index lighting one direct path to the right answer" width="92%">
-</p>
-
-Every time an AI assistant has to rediscover its own tools, re-read scattered instructions, or wander around looking for the right skill, it burns tokens — and tokens are money and time. Athena gives the assistant a **tidy index of everything it can do**, so it walks straight to the right tool instead of searching.
-
-<p align="center">
-  <img src="docs/assets/token-diagram.png" alt="Without a map: wandering. With Athena: a direct path." width="100%">
-</p>
-
-Less wandering means fewer tokens spent on overhead and more spent on your actual problem. The structure does the remembering, so the assistant doesn't have to.
-
-**Thin session — thousands of skills, near-zero startup cost.** Listing every skill to the assistant up front costs ~11k tokens *per session*. Athena hides the bulk behind a native, reversible `skillOverrides` map and surfaces only the ~5 most relevant skills per prompt (a fail-open `UserPromptSubmit` router), so the model starts clean and pulls capability on demand — every skill still reachable by `/name`. **~11k tokens saved per session.** See [docs/thin-session.md](docs/thin-session.md).
-
----
-
-## Why it's efficient (in short)
-
-- **One command, idempotent.** Nothing to skip or misremember; re-running converges instead of duplicating.
-- **Fail-closed.** A half-finished setup never reports success — if something doesn't start, the run fails loudly.
-- **Provable.** Built-in checks confirm both assistants see the same tools, every helper is valid, and no personal data leaked.
-- **Token-aware by design.** The tool map routes to the right capability first, so reasoning goes to the task, not to overhead.
-- **Tidy as it grows.** Clear rules for what-goes-where keep the system legible for years.
-
----
-
-## What's in the repo (and what isn't)
-
-| In the repo (safe to share) | **Not** in the repo |
-|---|---|
-| the setup script, tool list, checks | secret **values** (Keychain / `~/.secrets`) |
-| layout rules, skills, helpers | your private notes (your own repo) |
-| config templates, a project starter | your personal config & project list |
-
-A personal instance = your filled-in config + your private layer, on top of this public skeleton.
-
----
-
-## Commands
+Run the same checks used by the repository workflow:
 
 ```bash
-shellcheck bootstrap.sh smoke/*.sh   # lint
-./bootstrap.sh --dry-run             # dry run (preview, change nothing)
-./bootstrap.sh --only=<0|0b|1..6>    # run a single layer
-smoke/smoke.sh                       # final checks
+shellcheck -S error bootstrap.sh preinstall.sh smoke/*.sh
+./bootstrap.sh --dry-run
+bash smoke/smoke.sh
+ATHENA_PRIVATE_DIR="$(mktemp -d)" bash smoke/dry-validate.sh
 ```
 
-**Go deeper:** [`docs/FEATURES.en.md`](docs/FEATURES.en.md) documents every function in detail. See [`specs/`](specs/) for the plan, [`docs/decisions/`](docs/decisions/) for architecture decisions, and [`CLAUDE.md`](CLAUDE.md) for the map.
+After the agent layer is installed, inspect routing activity or build a weekly report:
 
----
+```bash
+node "$HOME/.agents/registry/scripts/athena-status.mjs" --days=7
+node "$HOME/.agents/registry/scripts/athena-weekly-report.mjs" --format=html
+```
 
-<p align="center"><sub>Athena — goddess of wisdom and strategy. Your system, made portable.</sub></p>
+The status command reads local JSONL records and exits with code `1` when it finds failed jobs without a retry. The weekly command writes reports under `~/.agents/reports`.
+
+## How it works
+
+Athena first copies the public `chezmoi/` tree into a local merged source. If `ATHENA_PRIVATE_REPO` is configured, its overlay is applied on top. One `chezmoi init --apply` then renders the selected result. The remaining layers build registries, clone configured work, prepare runtime files, and run checks.
+
+The scripts are designed to converge when run again. Guards stop common secret-path writes and force pushes to protected branches, while smoke tests check tracked files, templates, role contracts, and Claude/Codex parity.
+
+Dotfile deployment uses [chezmoi](https://www.chezmoi.io/). The knowledge layout follows the synthesis-on-write approach described in [the bundled method reference](skills/setup-os/references/karpathy-method.md), popularized by Andrej Karpathy. The project name refers to Athena, the Greek goddess of wisdom and strategy.
+
+The optional thin-session path hides most installed skills from the initial model prompt and routes a short relevant list per task. The measured example in [docs/thin-session.md](docs/thin-session.md) compares about 1,400 listed skills with a small allowlist; token savings depend on the actual skill inventory.
+
+## Security and privacy
+
+- File access: bootstrap layers write under `$HOME` and any paths named in your local configuration.
+- Shell and network: setup can run Homebrew, npm, Git, chezmoi, and launchd commands and can fetch configured repositories.
+- Secrets: values belong in macOS Keychain or `~/.secrets`, never in tracked manifests or templates.
+- Approvals: `/setup-os` asks about optional integrations. Direct `bootstrap.sh` follows the supplied configuration without per-command prompts.
+- Guardrails: included hooks block known risky patterns, but they are not an operating-system sandbox.
+- Telemetry: Athena's own scripts add no telemetry. Installed third-party tools have separate policies.
+- Recovery: `athena-update` takes a backup and shows a chezmoi diff before applying live configuration changes. Direct bootstrap runs rely on idempotency, Git history, and your normal system backups.
+
+Read [SECURITY.md](SECURITY.md) before using Athena on a machine with important data.
+
+## Documentation
+
+- [Feature reference](docs/FEATURES.en.md): implemented layers and agent contracts.
+- [Configuration example](athena.config.example.sh): public/private source and manifest paths.
+- [Filesystem contract](rules/structure.md): canonical directory ownership.
+- [Roadmap](specs/00-roadmap.md): completed phases and remaining acceptance work.
+- [Architecture decisions](docs/decisions/): design records, including generic/private merge behavior.
+- [Clean-room protocol](specs/05-clean-room-protocol.md): what the automated render test proves.
+- [Live acceptance](smoke/live-acceptance.md): fresh-Mac and update checklist.
+- [Contributing](CONTRIBUTING.md): setup and required checks.
+
+## Status and known limits
+
+The repository implements phases 1 through 8 in [the roadmap](specs/00-roadmap.md), including the layered bootstrap, onboarding, local agent contract, parity checks, status snapshot, and weekly report.
+
+Known limits:
+
+- Athena supports macOS. Homebrew password prompts, Xcode dialogs, and launchd behavior are platform-specific.
+- The clean-room test renders into temporary directories. It does not replace a full install and real launchd registration on a fresh Mac or VM.
+- Private repositories, credentials, MCP accounts, and personal knowledge are user-supplied and cannot be validated by the public clone.
+- Shell guards reduce common mistakes. They do not provide process isolation or a kernel sandbox.
+- Third-party package versions and authentication flows can change independently of this repository.
+
+## Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md). The short check path is:
+
+```bash
+shellcheck -S error bootstrap.sh preinstall.sh smoke/*.sh
+bash smoke/smoke.sh
+git diff --check
+```
+
+<!-- pantheon-family:start -->
+## Olympuz family
+
+This is one of the public [Olympuz projects](https://github.com/zarubinvibe/athena#olympuz-family). Each row opens the repository or downloads its source as a ZIP.
+
+| Type | Name | What it does | Source |
+|---|---|---|---|
+| project | Athena | Portable agent OS that restores a complete Claude and Codex setup on a new Mac. | [Repository](https://github.com/zarubinvibe/athena) · [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) |
+| project | Helioz | 24/7 agent work conveyor with verified completion markers and goal-based overnight decisions. | [Repository](https://github.com/zarubinvibe/helioz) · [ZIP](https://github.com/zarubinvibe/helioz/archive/refs/heads/main.zip) |
+| project | Mnemazine | Local-first memory system that turns raw inputs into verified reusable knowledge. | [Repository](https://github.com/zarubinvibe/mnemazine) · [ZIP](https://github.com/zarubinvibe/mnemazine/archive/refs/heads/main.zip) |
+| project | Themis | Multi-agent assistant for Russian litigation with local OCR and review by a five-jurist council. | [Repository](https://github.com/zarubinvibe/themis) · [ZIP](https://github.com/zarubinvibe/themis/archive/refs/heads/main.zip) |
+| project | Zeuz | Factory that turns an idea into a governed multi-agent workflow with gates, observability, and replay. | [Repository](https://github.com/zarubinvibe/zeuz) · [ZIP](https://github.com/zarubinvibe/zeuz/archive/refs/heads/main.zip) |
+<!-- pantheon-family:end -->
+
+## License
+
+Athena is available under the [MIT License](LICENSE). Copyright remains with the Athena authors and contributors.

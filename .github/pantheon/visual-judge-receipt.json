@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "pantheon-visual-judge",
+  "receipt_id": "athena-20260826-b683878e-15413c49",
+  "checked_at": "2026-08-26T14:33:26.000Z",
+  "runtime": "codex",
+  "tool": "view_image",
+  "route_id": "codex:view_image:managed-frontier",
+  "model": {
+    "id": "provider-managed",
+    "revision": "provider-managed",
+    "tier": "frontier"
+  },
+  "quality": "highest",
+  "verdict": "pass",
+  "human_reviewed": true,
+  "review_notes": "Codex view_image inspection and an independent visual review agreed that both files satisfy the recorded constraints.",
+  "references": [
+    {
+      "role": "style-anchor",
+      "sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2"
+    },
+    {
+      "role": "column-reference",
+      "sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+    }
+  ],
+  "outputs": [
+    {
+      "role": "hero",
+      "path": "docs/assets/pantheon/hero.png",
+      "sha256": "b683878e127c07c09d141b1f4461a1c6169a19cb882ab2936d2241d54b35b934",
+      "verdict": "pass",
+      "hard_constraints": {
+        "column": true,
+        "ivory-background": true,
+        "white-marble": true,
+        "daylight": true,
+        "blue-gold-accents": true,
+        "no-dark-background": true,
+        "deity-symbol": true,
+        "text-accuracy": true,
+        "anchor-similarity": true,
+        "readme-render": true
+      },
+      "scorecard": {
+        "column": 5,
+        "ivory-background": 5,
+        "white-marble": 5,
+        "daylight": 5,
+        "blue-gold-accents": 5,
+        "no-dark-background": 5,
+        "deity-symbol": 5,
+        "text-accuracy": 5,
+        "anchor-similarity": 5,
+        "readme-render": 5
+      }
+    },
+    {
+      "role": "emblem",
+      "path": "docs/assets/pantheon/emblem.png",
+      "sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295",
+      "verdict": "pass",
+      "hard_constraints": {
+        "column": true,
+        "ivory-background": true,
+        "white-marble": true,
+        "daylight": true,
+        "blue-gold-accents": true,
+        "no-dark-background": true,
+        "deity-symbol": true,
+        "text-accuracy": true,
+        "anchor-similarity": true,
+        "readme-render": true
+      },
+      "scorecard": {
+        "column": 5,
+        "ivory-background": 5,
+        "white-marble": 5,
+        "daylight": 5,
+        "blue-gold-accents": 5,
+        "no-dark-background": 5,
+        "deity-symbol": 5,
+        "text-accuracy": 5,
+        "anchor-similarity": 5,
+        "readme-render": 5
+      }
+    }
+  ]
+}

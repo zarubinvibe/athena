@@ -1,0 +1,31 @@
+ATHENA PANTHEON HERO
+
+Use case: stylized-concept
+Asset type: public GitHub README hero
+Primary request: Create a coherent visual for Athena, a portable agent operating system for rebuilding a working AI environment on a fresh Mac. Show a calm white-marble Athena beside her owl and round shield. Express portability and organized knowledge through a few thin, precise diagram lines and layered translucent knowledge planes, with pale-blue public flows and muted-gold private flows. Keep the scene architectural, restrained, and easy to read at README width.
+Input images: Image 1 is the immutable Pantheon style reference; Image 2 is the required family-signature column reference.
+Subject: Athena in classical white marble, a clearly recognizable owl, a round shield, thin knowledge diagrams, layered system planes, and one clearly visible freestanding classical column.
+Style/medium: premium restrained 3D product render, warm ivory presentation, white marble, subtle frosted glass, faithful to both reference images.
+Composition/framing: exact 16:9 landscape composition, target 3840 x 2160, all important objects fully inside the frame, clear separation between Athena and the freestanding column, balanced negative space, no cropped owl, shield, helmet, or column.
+Lighting/mood: soft natural daylight from the upper left, long gentle shadows, calm, lucid, confident.
+Color palette: warm ivory #F3EFE8, bright ivory #FBFAF6, white marble, sky blue #B8D6EA, muted gold #C9A87A, minimal soft charcoal #3E3A36 only where needed for contrast.
+Materials/textures: clean Carrara-like white marble, lightly frosted glass, fine blue and gold inlays; no metal-heavy treatment.
+Constraints: preserve the reference style and restraint; preserve a recognizable classical column as a separate family-signature object; Athena, owl, round shield, and thin knowledge diagrams must all be immediately legible; highest final quality; correct statue anatomy and clean geometry; atmospheric image only.
+Avoid: dark or grey background, black background, neon, purple gradient, smoky cinematic lighting, heavy bronze, clutter, stock-photo look, broken anatomy, duplicate limbs, malformed owl, cropped column, accidental glyphs, watermark, wordmark, interface labels, brand marks.
+Text (verbatim): No readable text, no letters, no numbers, no logos.
+
+ATHENA PANTHEON EMBLEM
+
+Use case: stylized-concept
+Asset type: public GitHub README emblem
+Primary request: Create a square Athena emblem for a portable agent operating system. Center a refined white-marble Athena bust with a recognizable owl and round shield. Use a few thin pale-blue and muted-gold knowledge-diagram lines to suggest organized memory and portable system layers. Include the Pantheon family column as a clearly visible architectural object, not a faint background texture.
+Input images: Image 1 is the immutable Pantheon style reference; Image 2 is the required family-signature column reference.
+Subject: centered Athena bust in classical white marble, owl, round shield, thin knowledge diagrams, and one clearly recognizable classical column.
+Style/medium: premium restrained 3D product render, warm ivory presentation, white marble, subtle frosted glass, faithful to both reference images.
+Composition/framing: exact 1:1 square composition, target 2048 x 2048, compact balanced arrangement with generous ivory margin, every object fully inside the frame, column clearly visible and not hidden behind the bust or shield.
+Lighting/mood: soft natural daylight from the upper left, long gentle shadow, calm, lucid, confident.
+Color palette: warm ivory #F3EFE8, bright ivory #FBFAF6, white marble, sky blue #B8D6EA, muted gold #C9A87A, minimal soft charcoal #3E3A36 only where needed for contrast.
+Materials/textures: clean Carrara-like white marble, lightly frosted glass, fine blue and gold inlays; no metal-heavy treatment.
+Constraints: preserve the reference style and restraint; preserve a recognizable classical column; Athena, owl, round shield, and thin knowledge diagrams must all be immediately legible; highest final quality; clean geometry; suitable for display at 128 px; atmospheric image only.
+Avoid: dark or grey background, black background, neon, purple gradient, smoky cinematic lighting, heavy bronze, clutter, stock-photo look, broken anatomy, malformed owl, cropped column, accidental glyphs, watermark, wordmark, interface labels, brand marks.
+Text (verbatim): No readable text, no letters, no numbers, no logos.
