@@ -3,7 +3,7 @@
 <!-- Athena — event-driven пересбор реестра. WatchPaths: установка скилла / запись overrides.jsonl
      → registry-rebuild.sh (index+registry+views+graphify+validate) → routable «сразу же».
      $HOME подставляется Слоем 5 bootstrap (sed). PATH явный (graphify в Python.framework,
-     node/python3) — иначе launchd не найдёт (баг status=127). ThrottleInterval+скрипт-lock+settle
+     node/python3) — иначе launchd не найдет (баг status=127). ThrottleInterval+скрипт-lock+settle
      коалесцируют всплеск файлов при установке. RunAtLoad=false — только на изменение. -->
 <plist version="1.0">
 <dict>

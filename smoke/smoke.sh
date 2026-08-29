@@ -13,7 +13,7 @@ for f in bootstrap.sh Brewfile README.md LICENSE rules/structure.md specs/00-roa
 done
 
 echo "[чистота] нет хардкода личных путей в трекаемых файлах"
-chk "нет хардкод /Users/<user>/" "! grep -rInE --exclude-dir=.git --exclude-dir=docs --exclude='*.log' --exclude=smoke.sh '/Users/[A-Za-z0-9_]+/' '$HERE' >/dev/null 2>&1"
+chk "нет хардкод /Users/<user>/" "! git -C '$HERE' grep -IEn -e '/Users/[A-Za-z0-9_]+/' -- ':!smoke/smoke.sh' ':!docs/**' >/dev/null 2>&1"
 chk "нет реального projects.manifest в git" "! git -C '$HERE' ls-files --error-unmatch projects.manifest >/dev/null 2>&1"
 chk "нет athena.config.sh в git" "! git -C '$HERE' ls-files --error-unmatch athena.config.sh >/dev/null 2>&1"
 
@@ -28,9 +28,14 @@ echo "[личное] нет имен/usernames/приватных идентиф
 # *.log) и untracked (audit-2026-06-16/) в публичный каркас не попадают — git grep их не видит.
 # Исключения-pathspec: smoke.sh (сам содержит паттерн).
 # PCRE: Zarubin(?!vibe) банит фамилию, но НЕ публичный GitHub-хэндл zarubinvibe (clone/curl URL — публичен, не PII).
+# Приветственное слово владельца подписано его именем по контракту семьи Olympuz
+# (public-repo-release-gate требует подпись под welcome-блоком). Это публикация
+# по решению владельца, не утечка, поэтому канонические места подписи исключены.
+# shellcheck disable=SC2034  # используется через eval в chk
+OWNER_SIGNED=":!README.md :!README.ru.md :!README.zh.md :!.github/family-page.json :!.github/public-release.json :!.claude/skills/athena-setup/SKILL.md :!docs/ONBOARDING.md :!docs/ONBOARDING.ru.md :!docs/ONBOARDING.zh.md"
 # shellcheck disable=SC2034  # используется через eval в chk (строка 31)
 PERSONAL_RE='(Philipp|Filipp|Zarubin(?!vibe)|Филипп|Кирилов|Ломоносов|Менделеев|Калачов|com\.zarubin|7teenno1)'
-chk "нет личных данных в публичных tracked-файлах" "! git -C '$HERE' grep -IPni -e \"\$PERSONAL_RE\" -- ':!smoke/smoke.sh' ':!docs/audit-2026-06-16/**' >/dev/null 2>&1"
+chk "нет личных данных в публичных tracked-файлах" "! git -C '$HERE' grep -IPni -e \"\$PERSONAL_RE\" -- ':!smoke/smoke.sh' ':!docs/audit-2026-06-16/**' $OWNER_SIGNED >/dev/null 2>&1"
 # Email автора = PII. Проверяем только коммиты ветки/PR, не всю историю репо.
 # CI checkout refs/pull/N/merge → HEAD = merge commit, HEAD^2 = PR tip, HEAD^1 = main tip.
 if _ec_p2=$(git -C "$HERE" rev-parse HEAD^2 2>/dev/null) && [ -n "$_ec_p2" ]; then

@@ -39,3 +39,6 @@ smoke/*.log
 
 # Локальный IDE-конфиг
 .vscode/
+
+# Knowledge graph rebuilt on demand; never committed.
+graphify-out/
