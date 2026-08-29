@@ -4,13 +4,13 @@
 
 Athena is a portable agent OS for macOS that rebuilds a Claude Code and Codex workspace from versioned templates, manifests, and checks.
 
-[Russian](README.ru.md) | [Feature reference](docs/FEATURES.en.md) | [Quickstart](#quickstart) | [Security](#security-and-privacy) | [Contributing](CONTRIBUTING.md)
+[Russian](../README.ru.md) | [Feature reference](../docs/FEATURES.en.md) | [Quickstart](#quickstart) | [Security](#security-and-privacy) | [Contributing](../CONTRIBUTING.md)
 
 <p align="center">
-  <img src="docs/assets/pantheon/emblem.png" width="144" alt="Athena marble emblem with an owl, round shield, knowledge lines, and classical column">
+  <img src="../docs/assets/pantheon/emblem.png" width="144" alt="Athena marble emblem with an owl, round shield, knowledge lines, and classical column">
 </p>
 
-![Athena marble hero with an owl, round shield, layered knowledge planes, and classical column](docs/assets/pantheon/hero.png)
+![Athena marble hero with an owl, round shield, layered knowledge planes, and classical column](../docs/assets/pantheon/hero.png)
 
 Status: public macOS reference implementation. Automated checks cover shell syntax, templates, repository hygiene, agent contracts, and generic clean-room rendering. A complete first install on a fresh Mac still needs the manual acceptance checklist.
 
@@ -114,9 +114,9 @@ Athena first copies the public `chezmoi/` tree into a local merged source. If `A
 
 The scripts are designed to converge when run again. Guards stop common secret-path writes and force pushes to protected branches, while smoke tests check tracked files, templates, role contracts, and Claude/Codex parity.
 
-Dotfile deployment uses [chezmoi](https://www.chezmoi.io/). The knowledge layout follows the synthesis-on-write approach described in [the bundled method reference](skills/setup-os/references/karpathy-method.md), popularized by Andrej Karpathy. The project name refers to Athena, the Greek goddess of wisdom and strategy.
+Dotfile deployment uses [chezmoi](https://www.chezmoi.io/). The knowledge layout follows the synthesis-on-write approach described in [the bundled method reference](../skills/setup-os/references/karpathy-method.md), popularized by Andrej Karpathy. The project name refers to Athena, the Greek goddess of wisdom and strategy.
 
-The optional thin-session path hides most installed skills from the initial model prompt and routes a short relevant list per task. The measured example in [docs/thin-session.md](docs/thin-session.md) compares about 1,400 listed skills with a small allowlist; token savings depend on the actual skill inventory.
+The optional thin-session path hides most installed skills from the initial model prompt and routes a short relevant list per task. The measured example in [docs/thin-session.md](../docs/thin-session.md) compares about 1,400 listed skills with a small allowlist; token savings depend on the actual skill inventory.
 
 ## Security and privacy
 
@@ -128,22 +128,22 @@ The optional thin-session path hides most installed skills from the initial mode
 - Telemetry: Athena's own scripts add no telemetry. Installed third-party tools have separate policies.
 - Recovery: `athena-update` takes a backup and shows a chezmoi diff before applying live configuration changes. Direct bootstrap runs rely on idempotency, Git history, and your normal system backups.
 
-Read [SECURITY.md](SECURITY.md) before using Athena on a machine with important data.
+Read [SECURITY.md](../SECURITY.md) before using Athena on a machine with important data.
 
 ## Documentation
 
-- [Feature reference](docs/FEATURES.en.md): implemented layers and agent contracts.
-- [Configuration example](athena.config.example.sh): public/private source and manifest paths.
-- [Filesystem contract](rules/structure.md): canonical directory ownership.
-- [Roadmap](specs/00-roadmap.md): completed phases and remaining acceptance work.
-- [Architecture decisions](docs/decisions/): design records, including generic/private merge behavior.
-- [Clean-room protocol](specs/05-clean-room-protocol.md): what the automated render test proves.
-- [Live acceptance](smoke/live-acceptance.md): fresh-Mac and update checklist.
-- [Contributing](CONTRIBUTING.md): setup and required checks.
+- [Feature reference](../docs/FEATURES.en.md): implemented layers and agent contracts.
+- [Configuration example](../athena.config.example.sh): public/private source and manifest paths.
+- [Filesystem contract](../rules/structure.md): canonical directory ownership.
+- [Roadmap](../specs/00-roadmap.md): completed phases and remaining acceptance work.
+- [Architecture decisions](../docs/decisions/): design records, including generic/private merge behavior.
+- [Clean-room protocol](../specs/05-clean-room-protocol.md): what the automated render test proves.
+- [Live acceptance](../smoke/live-acceptance.md): fresh-Mac and update checklist.
+- [Contributing](../CONTRIBUTING.md): setup and required checks.
 
 ## Status and known limits
 
-The repository implements phases 1 through 8 in [the roadmap](specs/00-roadmap.md), including the layered bootstrap, onboarding, local agent contract, parity checks, status snapshot, and weekly report.
+The repository implements phases 1 through 8 in [the roadmap](../specs/00-roadmap.md), including the layered bootstrap, onboarding, local agent contract, parity checks, status snapshot, and weekly report.
 
 Known limits:
 
@@ -155,7 +155,7 @@ Known limits:
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md). The short check path is:
+Read [CONTRIBUTING.md](../CONTRIBUTING.md). The short check path is:
 
 ```bash
 shellcheck -S error bootstrap.sh preinstall.sh smoke/*.sh
@@ -167,4 +167,4 @@ git diff --check
 
 ## License
 
-Athena is available under the [MIT License](LICENSE). Copyright remains with the Athena authors and contributors.
+Athena is available under the [MIT License](../LICENSE). Copyright remains with the Athena authors and contributors.
