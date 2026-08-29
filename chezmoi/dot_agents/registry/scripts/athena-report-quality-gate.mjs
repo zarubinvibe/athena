@@ -16,9 +16,10 @@ function arg(name, fallback = '') {
 
 const HOME = process.env.HOME || ''
 const ROOT = process.env.ATHENA_ROOT || path.resolve(process.cwd())
-const REPORT = arg('report', '')
+const safe = (p, name) => { if (p && p.includes('..')) throw new Error(`${name}: path traversal not allowed`); return p }
+const REPORT = safe(arg('report', ''), '--report')
 const REPORTS_DIR = path.resolve(
-  arg('reports', process.env.ATHENA_REPORTS || path.join(HOME, '.agents', 'reports'))
+  safe(arg('reports', process.env.ATHENA_REPORTS || path.join(HOME, '.agents', 'reports')), '--reports')
 )
 
 // Rule 1: raw OCR / media file artifacts

@@ -12,10 +12,11 @@ set -uo pipefail
 INPUT="$(cat 2>/dev/null || true)"
 [ -z "$INPUT" ] && exit 0
 
-# command из tool_input без jq (первое совпадение). Многострочный JSON → tr к одной строке.
-cmd="$(printf '%s' "$INPUT" | tr '\n' ' ' | sed -n 's/.*"command"[[:space:]]*:[[:space:]]*"\(.*\)/\1/p')"
-# срезать хвост после закрывающей кавычки значения (грубо, но command обычно последнее поле)
-cmd="${cmd%\"*}"
+# command из tool_input через python3 (корректный JSON-парсинг, нет greedy-regex артефактов).
+# python3 доступен после preinstall.sh (brew). Фолбэк → cmd="" → exit 0 (hook не блокирует).
+cmd="$(printf '%s' "$INPUT" | python3 -c \
+  'import json,sys; d=json.load(sys.stdin); print(d.get("tool_input",{}).get("command",""),end="")' \
+  2>/dev/null || true)"
 [ -z "$cmd" ] && exit 0
 
 deny() {

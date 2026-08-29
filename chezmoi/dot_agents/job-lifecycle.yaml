@@ -50,7 +50,8 @@ states:
 
 terminal_states: [Archived, Failed]
 
-# Invariants — enforced by gates, not just convention.
+# Invariants — enforcement: declarative (structural contract, not runtime guard).
+# agent-contract.sh verifies these keys exist; runtime enforcement requires ledger checks (future work).
 invariants:
   - id: retry-once
     rule: Retry is allowed at most once per job_id. A second failure goes to Failed (terminal).

@@ -204,7 +204,7 @@ layer4_vault() {
 layer5_runtime() {
   phase 5 || return 0; say "Слой 5 — секреты · MCP · launchd"
   mkdir -p "$HOME/.secrets" && chmod 700 "$HOME/.secrets"
-  warn "секреты: см. SECURITY.md (значения из Keychain, НЕ в git)"
+  warn "секреты: заполни по secrets-checklist.md (значения из Keychain, НЕ в git)"
   warn "MCP: переавторизуй по mcp-reauth.md"
   [ "$(uname)" = "Darwin" ] || { warn "не macOS — launchd пропущен"; return 0; }
 

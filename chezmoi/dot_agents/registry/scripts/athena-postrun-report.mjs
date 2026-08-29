@@ -17,8 +17,9 @@ function arg(name, fallback = '') {
 function flag(name) { return argv.includes(`--${name}`) }
 
 const HOME = process.env.HOME || ''
+const safe = (p, name) => { if (p.includes('..')) throw new Error(`${name}: path traversal not allowed`); return p }
 const REPORTS = path.resolve(
-  arg('reports', process.env.ATHENA_REPORTS || path.join(HOME, '.agents', 'reports'))
+  safe(arg('reports', process.env.ATHENA_REPORTS || path.join(HOME, '.agents', 'reports')), '--reports')
 )
 const RUN_ID = arg('run-id', process.env.ATHENA_RUN_ID || new Date().toISOString().slice(0, 10))
 const TITLE = arg('title', 'Athena post-run report')
@@ -46,7 +47,7 @@ async function loadResults() {
     : Array.isArray(raw.processResults) ? raw.processResults
     : []
   const byGroup = new Map()
-  for (const row of rows) byGroup.set(row.group_id ?? String(Math.random()), row)
+  for (let i = 0; i < rows.length; i++) byGroup.set(rows[i].group_id ?? String(i), rows[i])
   return [...byGroup.values()]
 }
 

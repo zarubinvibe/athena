@@ -59,6 +59,9 @@ fields_of() {
 CLAUDE_FIELDS="$(fields_of "$TMPDIR_PS/claude-route.json")"
 CODEX_FIELDS="$(fields_of "$TMPDIR_PS/codex-route.json")"
 
+[ -n "$CLAUDE_FIELDS" ] || bad "claude route card has no parseable fields"
+[ -n "$CODEX_FIELDS"  ] || bad "codex route card has no parseable fields"
+
 if [ "$CLAUDE_FIELDS" = "$CODEX_FIELDS" ]; then
   ok "route-card schema: identical ($(echo "$CLAUDE_FIELDS" | wc -l | tr -d ' ') fields)"
 else

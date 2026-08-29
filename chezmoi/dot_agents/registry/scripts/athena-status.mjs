@@ -14,10 +14,11 @@ function arg(name, fallback = '') {
 const flag = name => argv.includes(`--${name}`)
 
 const HOME = process.env.HOME || ''
-const EVALS_PATH = arg('evals', path.join(HOME, '.agents', 'routing-evals.jsonl'))
-const LEDGER_PATH = arg('ledger', path.join(HOME, '.agents', 'job-ledger.jsonl'))
-const REPORTS_DIR = arg('reports', path.join(HOME, '.agents', 'reports'))
-const STEWARD_PATH = arg('steward', path.join(HOME, '.agents', 'steward-log.jsonl'))
+const safe = (p, name) => { if (p.includes('..')) throw new Error(`${name}: path traversal not allowed`); return p }
+const EVALS_PATH = safe(arg('evals', path.join(HOME, '.agents', 'routing-evals.jsonl')), '--evals')
+const LEDGER_PATH = safe(arg('ledger', path.join(HOME, '.agents', 'job-ledger.jsonl')), '--ledger')
+const REPORTS_DIR = safe(arg('reports', path.join(HOME, '.agents', 'reports')), '--reports')
+const STEWARD_PATH = safe(arg('steward', path.join(HOME, '.agents', 'steward-log.jsonl')), '--steward')
 const DAYS = parseInt(arg('days', '7'), 10)
 
 async function readJsonl(filePath) {

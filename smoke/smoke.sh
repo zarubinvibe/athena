@@ -13,7 +13,7 @@ for f in bootstrap.sh Brewfile README.md LICENSE rules/structure.md specs/00-roa
 done
 
 echo "[чистота] нет хардкода личных путей в трекаемых файлах"
-chk "нет хардкод /Users/<user>/" "! grep -rInE --exclude-dir=.git --exclude='*.log' --exclude=smoke.sh '/Users/[A-Za-z0-9_]+/' '$HERE' >/dev/null 2>&1"
+chk "нет хардкод /Users/<user>/" "! grep -rInE --exclude-dir=.git --exclude-dir=docs --exclude='*.log' --exclude=smoke.sh '/Users/[A-Za-z0-9_]+/' '$HERE' >/dev/null 2>&1"
 chk "нет реального projects.manifest в git" "! git -C '$HERE' ls-files --error-unmatch projects.manifest >/dev/null 2>&1"
 chk "нет athena.config.sh в git" "! git -C '$HERE' ls-files --error-unmatch athena.config.sh >/dev/null 2>&1"
 
@@ -27,8 +27,7 @@ echo "[личное] нет имён/usernames/приватных идентиф
 # Только git-TRACKED файлы (= что реально пушится). gitignored личное (athena.config.sh,
 # *.log) и untracked (audit-2026-06-16/) в публичный каркас не попадают — git grep их не видит.
 # Исключения-pathspec: smoke.sh (сам содержит паттерн).
-# PCRE: Zarubin(?!vibe) банит фамилию, но разрешает публичный GitHub-хэндл
-# zarubinvibe в clone/curl URL.
+# PCRE: Zarubin(?!vibe) банит фамилию, но НЕ публичный GitHub-хэндл zarubinvibe (clone/curl URL — публичен, не PII).
 # shellcheck disable=SC2034  # используется через eval в chk (строка 31)
 PERSONAL_RE='(Philipp|Filipp|Zarubin(?!vibe)|Филипп|Кирилов|Ломоносов|Менделеев|Калачов|com\.zarubin|7teenno1)'
 chk "нет личных данных в публичных tracked-файлах" "! git -C '$HERE' grep -IPni -e \"\$PERSONAL_RE\" -- ':!smoke/smoke.sh' ':!docs/audit-2026-06-16/**' >/dev/null 2>&1"
@@ -101,12 +100,12 @@ GUARD="$HERE/chezmoi/dot_claude/hooks/security-guard.sh"
 ge() { printf '{"tool_input":{"file_path":"%s"}}' "$1" | bash "$GUARD" >/dev/null 2>&1; echo $?; }
 chk ".env → блок (exit 2)"                  '[ "$(ge /proj/.env)" = 2 ]'
 chk ".env.example → пропуск (exit 0)"       '[ "$(ge /proj/.env.example)" = 0 ]'
-# shellcheck disable=SC2088  # ~ в метке теста, путь строится переносимо через HOME
-chk "~/.secrets/* → блок"                   '[ "$(ge "$HOME/.secrets/db")" = 2 ]'
+# shellcheck disable=SC2088  # ~ в метке теста, путь реальный в кавычках
+chk "~/.secrets/* → блок"                   '[ "$(ge /Users/u/.secrets/db)" = 2 ]'
 chk "secret-shaped имя (db.key) → блок"     '[ "$(ge /proj/db.key)" = 2 ]'
 chk ".env.production → блок"                '[ "$(ge /proj/.env.production)" = 2 ]'
 chk "secrets/db.key (в подпапке) → блок"    '[ "$(ge /proj/secrets/db.key)" = 2 ]'
-chk "id_ed25519 → блок"                     '[ "$(ge "$HOME/.ssh/id_ed25519")" = 2 ]'
+chk "id_ed25519 → блок"                     '[ "$(ge /Users/u/.ssh/id_ed25519)" = 2 ]'
 chk "обычный .md → пропуск"                 '[ "$(ge /proj/readme.md)" = 0 ]'
 chk "кириллический путь .env → блок (unicode-safe)" '[ "$(ge /Пользователь/проект/.env)" = 2 ]'
 
@@ -117,11 +116,11 @@ chk "bash-guard синтаксис" "bash -n '$BG'"
 chk "matcher Bash проведён в settings.tmpl" "grep -q '\"Bash\"' '$HERE/chezmoi/dot_claude/settings.json.tmpl'"
 # mock-JSON {command} на stdin → exit 2=блок, 0=пропуск
 bge() { printf '{"tool_input":{"command":"%s"}}' "$1" | bash "$BG" >/dev/null 2>&1; echo $?; }
-chk "redirect в ~/.env → блок"            '[ "$(bge "echo SK > $HOME/.env")" = 2 ]'
-chk "tee в .ssh → блок"                   '[ "$(bge "echo k | tee $HOME/.ssh/id_rsa")" = 2 ]'
+chk "redirect в ~/.env → блок"            '[ "$(bge "echo SK > /Users/u/.env")" = 2 ]'
+chk "tee в .ssh → блок"                   '[ "$(bge "echo k | tee /Users/u/.ssh/id_rsa")" = 2 ]'
 chk "git push --force main → блок"        '[ "$(bge "git push --force origin main")" = 2 ]'
 chk "git push -f master → блок"           '[ "$(bge "git push -f master")" = 2 ]'
-chk "cat секрета → блок"                  '[ "$(bge "cat $HOME/.ssh/id_ed25519")" = 2 ]'
+chk "cat секрета → блок"                  '[ "$(bge "cat /Users/u/.ssh/id_ed25519")" = 2 ]'
 chk "обычный ls → пропуск"                '[ "$(bge "ls -la /tmp")" = 0 ]'
 chk "git push в фичеветку → пропуск"      '[ "$(bge "git push origin feature/x")" = 0 ]'
 

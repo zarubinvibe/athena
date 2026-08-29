@@ -16,10 +16,11 @@ function arg(name, fallback = '') {
 const flag = name => argv.includes(`--${name}`)
 
 const HOME = process.env.HOME || ''
-const EVALS_PATH = arg('evals', process.env.ATHENA_EVALS ||
-  path.join(HOME, '.agents', 'routing-evals.jsonl'))
-const REPORTS = path.resolve(arg('reports', process.env.ATHENA_REPORTS ||
-  path.join(HOME, '.agents', 'reports')))
+const safe = (p, name) => { if (p.includes('..')) throw new Error(`${name}: path traversal not allowed`); return p }
+const EVALS_PATH = safe(arg('evals', process.env.ATHENA_EVALS ||
+  path.join(HOME, '.agents', 'routing-evals.jsonl')), '--evals')
+const REPORTS = path.resolve(safe(arg('reports', process.env.ATHENA_REPORTS ||
+  path.join(HOME, '.agents', 'reports')), '--reports'))
 const FORMAT = arg('format', 'md')
 const DAYS = parseInt(arg('days', '7'), 10)
 

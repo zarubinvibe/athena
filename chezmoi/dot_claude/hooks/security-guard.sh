@@ -10,8 +10,10 @@ set -uo pipefail
 INPUT="$(cat 2>/dev/null || true)"
 [ -z "$INPUT" ] && exit 0
 
-# file_path из tool_input без jq (берём первое совпадение)
-fp="$(printf '%s' "$INPUT" | sed -n 's/.*"file_path"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | head -1)"
+# file_path из tool_input через python3 (корректный JSON-парсинг, поддержка unicode-путей).
+fp="$(printf '%s' "$INPUT" | python3 -c \
+  'import json,sys; d=json.load(sys.stdin); print(d.get("tool_input",{}).get("file_path",""),end="")' \
+  2>/dev/null || true)"
 [ -z "$fp" ] && exit 0
 
 base="$(basename "$fp")"

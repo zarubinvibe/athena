@@ -8,6 +8,16 @@ Athena заново собирает рабочую среду Claude Code и Co
 
 <p align="center"><img src="docs/assets/pantheon/hero.png" alt="Афина из белого мрамора с совой, круглым щитом и слоями знания у классической колонны" width="100%"></p>
 
+<!-- owner-welcome:start -->
+
+> Привет. Я слишком много раз переносил настройку на новый Mac руками и каждый раз забывал половину: правила, скиллы, хуки, реестры, клонированные проекты.
+>
+> Athena держит эту настройку как программу, а не как память. Если она вернёт вам среду за вечер, забирайте и делайте своей.
+>
+> — Филипп Зарубин
+
+<!-- owner-welcome:end -->
+
 ## Оглавление
 
 - [Что это](#что-это)
@@ -111,7 +121,9 @@ less preinstall.sh
 ./preinstall.sh
 ```
 
-Спешите на чистом Mac? Запустите тот же версионный скрипт напрямую: `curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`. Совсем нет Git? Возьмите [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) и распакуйте. Дальше откройте Claude Code в этой папке и введите `/setup-os`.
+Спешите на чистом Mac? Запустите тот же версионный скрипт напрямую: `curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`. Совсем нет Git? Возьмите [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) и распакуйте. Дальше откройте Claude Code в этой папке и введите `/setup-os`. Первый раз? Откройте проект в Claude Code и запустите `/athena-setup`: установка пройдёт разговором, слой за слоем, с сухим прогоном до первой записи.
+
+Делаете это впервые? [Онбординг](docs/ONBOARDING.ru.md) проводит весь первый запуск по шагам и говорит, что видно после каждой команды.
 
 **Что получится:** базовые инструменты установлены, репозиторий лежит в `~/athena`, а `/setup-os` готов спросить, что вам нужно.
 

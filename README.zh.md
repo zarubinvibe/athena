@@ -8,6 +8,16 @@ Athena 用版本化的模板和检查，在一台新的 Mac 上重建完整的 C
 
 <p align="center"><img src="docs/assets/pantheon/hero.png" alt="白色大理石的雅典娜带着猫头鹰和圆盾站在古典石柱旁，身后是一层层展开的知识平面" width="100%"></p>
 
+<!-- owner-welcome:start -->
+
+> 你好。我把自己的配置手动搬到新 Mac 上太多次，每次都忘掉一半：规则、技能、钩子、注册表、克隆好的项目。
+>
+> Athena 把这套配置变成一段程序，而不是一段记忆。如果它能在一个晚上把环境还给你，就拿去，把它变成你自己的。
+>
+> — Filipp Zarubin
+
+<!-- owner-welcome:end -->
+
 ## 目录
 
 - [这是什么](#这是什么)
@@ -111,7 +121,9 @@ less preinstall.sh
 ./preinstall.sh
 ```
 
-在新 Mac 上赶时间？直接执行同一个受版本管理的脚本：`curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`。完全没有 Git？拿 [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) 解压。之后在这个目录里打开 Claude Code，输入 `/setup-os`。
+在新 Mac 上赶时间？直接执行同一个受版本管理的脚本：`curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`。完全没有 Git？拿 [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) 解压。之后在这个目录里打开 Claude Code，输入 `/setup-os`。 第一次用？在 Claude Code 里打开项目并运行 `/athena-setup`：安装以对话方式一层层进行，写入之前先给你看干跑结果。
+
+第一次做这件事？[上手引导](docs/ONBOARDING.zh.md) 会一步一步带你走完第一次运行，并写清楚每条命令之后你会看到什么。
 
 **你会得到：** 基础工具装好了，仓库落在 `~/athena`，`/setup-os` 准备好问你想要什么。
 

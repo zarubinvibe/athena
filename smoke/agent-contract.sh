@@ -8,7 +8,7 @@ ROOT="${1:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 PASS_DIR="$ROOT/chezmoi/dot_agents/role-passports"
 GRAPH="$ROOT/chezmoi/dot_agents/handoff-graph.yaml"
 
-AGENTS="athena-router athena-guard athena-runner athena-reconciler athena-reviewer athena-librarian athena-steward"
+AGENTS="athena-router athena-guard athena-runner athena-reconciler athena-reviewer athena-librarian athena-steward rescue-runner"
 fail=0
 bad() { echo "  ✗ $1" >&2; fail=1; }
 
@@ -129,6 +129,14 @@ fi
 EVALS_EXAMPLE="$ROOT/claude-starter/routing-evals.example.jsonl"
 [ -f "$EVALS_EXAMPLE" ] || bad "claude-starter/routing-evals.example.jsonl missing"
 
+# 13b. routing-evals.example.jsonl covers all 10 start matrix classes.
+if [ -f "$EVALS_EXAMPLE" ]; then
+  for cls in $MATRIX_CLASSES; do
+    grep -q "\"$cls\"" "$EVALS_EXAMPLE" \
+      || bad "routing-evals.example.jsonl: missing class '$cls' (start matrix coverage gap)"
+  done
+fi
+
 # 14. athena-router passport carries start matrix (10 classes).
 ROUTER_PASSPORT="$ROOT/chezmoi/dot_agents/role-passports/athena-router.md"
 MATRIX_CLASSES="code-edit debug arch docs legal obsidian deploy ui security steward"
@@ -158,6 +166,9 @@ if command -v node >/dev/null 2>&1; then
     # status with empty inputs → exit 0
     node "$STATUS_SCRIPT" --evals=/dev/null --reports=/tmp/athena-smoke-status >/dev/null 2>&1 \
       || bad "athena-status.mjs: non-zero exit on empty inputs"
+    # --json output must contain 'total' field
+    node "$STATUS_SCRIPT" --evals=/dev/null --json 2>/dev/null | grep -q '"total"' \
+      || bad "athena-status.mjs: --json output missing 'total' field"
   fi
 
   if [ -f "$WEEKLY_SCRIPT" ]; then
@@ -176,6 +187,12 @@ if command -v node >/dev/null 2>&1; then
     else
       bad "athena-weekly-report.mjs: no .md produced"
     fi
+    # --format=html must produce an .html file
+    node "$WEEKLY_SCRIPT" --evals="$WEEKLY_TMP/evals.jsonl" --reports="$WEEKLY_TMP/reports" \
+      --format=html --quiet >/dev/null 2>&1 \
+      || bad "athena-weekly-report.mjs: non-zero exit on --format=html"
+    ls "$WEEKLY_TMP/reports/"*.html >/dev/null 2>&1 \
+      || bad "athena-weekly-report.mjs: no .html produced with --format=html"
   fi
 else
   [ ! -f "$STATUS_SCRIPT" ]  && bad "athena-status.mjs missing"
@@ -187,7 +204,7 @@ if [ "$fail" -ne 0 ]; then
   echo "AGENT-CONTRACT FAIL" >&2
   exit 1
 fi
-echo "  ✓ 7 passports · graph integrity · learning-tail · session-review skill · report+gate"
+echo "  ✓ 8 passports · graph integrity · learning-tail · session-review skill · report+gate"
 echo "  ✓ job-lifecycle FSM · project.yaml template · routing-evals format · start matrix · parity-smoke"
 echo "  ✓ Phase 8: status CLI · weekly-report · quality-gate on synthetic data"
 echo "agent-contract OK"

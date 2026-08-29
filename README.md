@@ -8,6 +8,16 @@ Athena rebuilds a full Claude Code and Codex workspace on a fresh Mac from versi
 
 <p align="center"><img src="docs/assets/pantheon/hero.png" alt="Athena in white marble with an owl, a round shield, and layered knowledge planes beside the classical column" width="100%"></p>
 
+<!-- owner-welcome:start -->
+
+> Hello. I moved my setup to a new Mac by hand one time too many and forgot half of it: rules, skills, hooks, registries, cloned projects.
+>
+> Athena keeps that setup as a program instead of a memory. If it gives you your environment back in one evening, take it and make it yours.
+>
+> — Filipp Zarubin
+
+<!-- owner-welcome:end -->
+
 ## Contents
 
 - [What This Is](#what-this-is)
@@ -111,7 +121,9 @@ less preinstall.sh
 ./preinstall.sh
 ```
 
-In a hurry on a fresh Mac? Run the same tracked script directly: `curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`. No Git at all? Take [the ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) and unpack it. Then open Claude Code in the folder and type `/setup-os`.
+In a hurry on a fresh Mac? Run the same tracked script directly: `curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`. No Git at all? Take [the ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) and unpack it. Then open Claude Code in the folder and type `/setup-os`. First time here? Open the project in Claude Code and run `/athena-setup`: the install goes as a conversation, layer by layer, with a dry run before anything is written.
+
+Never done this before? [The onboarding](docs/ONBOARDING.md) walks the whole first run step by step and says what you see after every command.
 
 **You get:** the base tools are installed, the repository sits at `~/athena`, and `/setup-os` is ready to ask what you want.
 

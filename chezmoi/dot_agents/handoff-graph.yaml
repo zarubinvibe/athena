@@ -45,6 +45,11 @@ agents:
     input: eval records
     output: improvement candidates
     tools: [registry, drift-check]
+  - id: rescue-runner
+    role: one-shot rescue adapter
+    input: handoff pack (no secrets)
+    output: outbox artifacts (rescue attempt)
+    tools: [claude-adapter, codex-adapter]
 
 # Allowed transitions. Every edge MUST carry a `when`.
 handoffs:
