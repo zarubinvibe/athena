@@ -6,7 +6,7 @@
 
 ## Что доказывали
 На чистом таргете (без приватного `athena-private` overlay) generic-путь
-`git clone <generic> && ./bootstrap.sh` валиден, а сигнал прогона **не лжёт**.
+`git clone <generic> && ./bootstrap.sh` валиден, а сигнал прогона **не лжет**.
 
 ## Прогон 2026-06-16 (эмуляция clean-room, dry-validate)
 
@@ -14,15 +14,15 @@
 |---|---|---|---|
 | A. generic-only (чистый таргет, overlay отсутствует) | `ATHENA_PRIVATE_DIR=<empty> dry-validate.sh` | GREEN, 0 нерендеренных `{{ }}` | **GREEN**, 0 неизвестных токенов ✓ |
 | B. overlay ожидался, но отсутствует | `ATHENA_EXPECT_OVERLAY=1 dry-validate.sh` (без overlay) | RED (неполнота честно видна) | **RED** ✓ |
-| C. launchd dry-ветка | `./bootstrap.sh --dry-run --only=5` | счётчик loaded/errs, честный rapport | **«загружены: 5»**, bootout/bootstrap ✓ |
+| C. launchd dry-ветка | `./bootstrap.sh --dry-run --only=5` | счетчик loaded/errs, честный rapport | **«загружены: 5»**, bootout/bootstrap ✓ |
 
 ## Что сделано для честности сигнала (предусловия)
 - **launchd fail-closed** (`bootstrap.sh` Слой 5): убран безусловный `ok`; теперь
-  счётчик `loaded/errs`, `ok` только при `errs==0`, иначе `warn` + инкремент `BOOT_ERRS`.
-- **deprecated API заменён:** `launchctl load/unload` → `bootout gui/$UID/<label>` (игнор) →
+  счетчик `loaded/errs`, `ok` только при `errs==0`, иначе `warn` + инкремент `BOOT_ERRS`.
+- **deprecated API заменен:** `launchctl load/unload` → `bootout gui/$UID/<label>` (игнор) →
   `bootstrap gui/$UID <tgt>` (ненулевой exit при провале регистрации).
 - **агрегат-exit:** `BOOT_ERRS>0` → `bootstrap.sh` завершается `exit 1` (не плоская `;`-цепочка).
-- **smoke не врёт зелёным:** generic-only = честный GREEN (валидная конфигурация публичного
+- **smoke не врет зеленым:** generic-only = честный GREEN (валидная конфигурация публичного
   клона), overlay-missing-при-ожидании = RED через `ATHENA_EXPECT_OVERLAY` (флаг в owner-конфиге).
 - **parity-чек реальный:** smoke сверяет наличие `AGENTS.md` в `~/.claude` И `~/.codex`
   (не вакуумный `chk 'true'`).
@@ -53,9 +53,9 @@ merged-source, свежий `$HOME=$(mktemp -d)`: `chezmoi apply --source <merge
 
 ## Остаток (минимальный)
 - **Реальная регистрация launchd** (bootout/bootstrap) на чистом таргете не выполнялась
-  (dev-машина боевая, live launchd не трогаем). Ветка проверена в `--dry-run` (счёт honest).
+  (dev-машина боевая, live launchd не трогаем). Ветка проверена в `--dry-run` (счет honest).
 
 ## Вывод
 Generic clean-room путь **доказан настоящим `chezmoi apply`** (exit 0, 0 нерендеренных
 chezmoi-токенов, settings валиден, self-learning на месте); сигнал прогона честный (launchd
-fail-closed, агрегат-exit, smoke не врёт). P0.4 закрыт.
+fail-closed, агрегат-exit, smoke не врет). P0.4 закрыт.

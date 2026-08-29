@@ -17,7 +17,7 @@ export ATHENA_VAULT_REPO=""
 # Манифест проектов. Если в ATHENA_PRIVATE_DIR есть projects.manifest — он перекроет этот.
 export ATHENA_PROJECTS_MANIFEST="$HOME/Проекты/athena/projects.manifest"
 
-# Внешние инструменты → ~/tools (Слой 0b, напр. telegram-бот). По умолчанию берётся
+# Внешние инструменты → ~/tools (Слой 0b, напр. telegram-бот). По умолчанию берется
 # tools.manifest из приватного overlay (ATHENA_PRIVATE_DIR).
 export ATHENA_TOOLS_MANIFEST="$ATHENA_PRIVATE_DIR/tools.manifest"
 

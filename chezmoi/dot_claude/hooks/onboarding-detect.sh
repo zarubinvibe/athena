@@ -11,9 +11,9 @@ SNOOZE_MARKER="${CLAUDE_DIR}/.athena-onboarding-snooze"
 OWNER_FILE="${CLAUDE_DIR}/references/owner.md"
 
 emit_nudge() {
-  # SessionStart additionalContext через JSON-выход (надёжнее чистого stdout).
+  # SessionStart additionalContext через JSON-выход (надежнее чистого stdout).
   cat <<'JSON'
-{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"⚙️ Athena не персонализирована (нет ~/.claude/.athena-onboarded). Запусти грилл первого запуска: вызови skill setup-os (Этап A — полный грилл P1–P5). Он соберёт owner.md/CLAUDE.md/манифесты/references по методу Карпаты. Если позже — скажи «пропустить онбординг» (поставлю snooze, не буду долбить)."}}
+{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"⚙️ Athena не персонализирована (нет ~/.claude/.athena-onboarded). Запусти грилл первого запуска: вызови skill setup-os (Этап A — полный грилл P1–P5). Он соберет owner.md/CLAUDE.md/манифесты/references по методу Карпаты. Если позже — скажи «пропустить онбординг» (поставлю snooze, не буду долбить)."}}
 JSON
 }
 

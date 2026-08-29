@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Athena — Шаг 0 (руками в Терминале). Единственное, что агент не может: brew нужен пароль Mac.
-# Ставит: Homebrew + базовые CLI + Claude Code. Дальше всё ведёт Claude (/setup-os).
+# Ставит: Homebrew + базовые CLI + Claude Code. Дальше все ведет Claude (/setup-os).
 # Идемпотентно: повторный запуск ничего не ломает.
 #   curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash
 set -euo pipefail
@@ -11,7 +11,7 @@ ok()  { printf '\033[1;32m  ✓ %s\033[0m\n' "$*"; }
 [ "$(uname)" = "Darwin" ] || { echo "Только macOS"; exit 1; }
 
 # 1. Command Line Tools (компилятор для brew). --install не блокирует —
-#    открывает GUI-попап и сразу возвращает. Ждём реального завершения,
+#    открывает GUI-попап и сразу возвращает. Ждем реального завершения,
 #    иначе brew падает без компилятора в середине Шага 0.
 if ! xcode-select -p >/dev/null 2>&1; then
   say "Ставлю Command Line Tools — подтверди установку в попапе…"
@@ -54,7 +54,7 @@ ok "репо Athena в ~/athena"
 cat <<'DONE'
 
 ────────────────────────────────────────────
-✓ Шаг 0 завершён. Дальше:
+✓ Шаг 0 завершен. Дальше:
 
   cd ~/athena
   claude

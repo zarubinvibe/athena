@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # Athena — launchd status=127 guard.
-# Назначение: каждый user LaunchAgent, что зовёт бинарь ГОЛОЙ командой, реально находит его
+# Назначение: каждый user LaunchAgent, что зовет бинарь ГОЛОЙ командой, реально находит его
 #   под PATH, который даст launchd. Ловит рекуррентный баг exit 127 (бинарь не на PATH).
 # Два режима:
-#   - запуск напрямую (`bash launchd-127-guard.sh`) → отчёт дописывается в $HOME/.claude/health.log;
-#   - `source` из health-check.sh → отдаёт функцию chk_launchd (DRY, единый источник логики).
+#   - запуск напрямую (`bash launchd-127-guard.sh`) → отчет дописывается в $HOME/.claude/health.log;
+#   - `source` из health-check.sh → отдает функцию chk_launchd (DRY, единый источник логики).
 # Generic, без личных данных: читает что есть в ~/Library/LaunchAgents, имена не хардкодит.
 set -uo pipefail
 
-# chk_launchd: печатает строки отчёта в stdout, инкрементит $issues (если задан в окружении).
+# chk_launchd: печатает строки отчета в stdout, инкрементит $issues (если задан в окружении).
 chk_launchd() {
   local dir="$HOME/Library/LaunchAgents" plist label args effpath inlinepath tool miss
   [ -d "$dir" ] || { echo "  ··  launchd: нет агентов (skip)"; return; }
@@ -39,7 +39,7 @@ chk_launchd() {
   done
 }
 
-# standalone-режим: дописать отчёт в health.log
+# standalone-режим: дописать отчет в health.log
 if [ "${BASH_SOURCE[0]:-$0}" = "${0}" ]; then
   LOG="$HOME/.claude/health.log"; issues=0
   {

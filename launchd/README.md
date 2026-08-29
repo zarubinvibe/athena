@@ -1,6 +1,6 @@
 # launchd — агенты автоматики Athena
 
-Слой 5 `bootstrap.sh` берёт каждый `*.plist` здесь, подставляет `$HOME` (sed) →
+Слой 5 `bootstrap.sh` берет каждый `*.plist` здесь, подставляет `$HOME` (sed) →
 `~/Library/LaunchAgents/`, `launchctl load`. Файлы `*.plist.example` **пропускаются**.
 
 | Файл | Что | Статус |
@@ -11,7 +11,7 @@
 Жнец готов к работе: `chezmoi/dot_claude/scripts/session-reaper.sh` едет с Сознанием
 (generic, чистый `$HOME`, 0 секрета). Public-юзер активирует переименованием
 `com.athena.session-reaper.plist.example` → `.plist`. У владельца активный плист с
-лейблом `com.fil.session-reaper` живёт в приватном слое (athena-private/launchd/).
+лейблом `com.fil.session-reaper` живет в приватном слое (athena-private/launchd/).
 
 Конвенции:
 - Пути только через `$HOME` (Слой 5 sed-ит). Без хардкода `/Users/...`.

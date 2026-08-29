@@ -24,9 +24,9 @@ deny() {
   exit 2
 }
 
-# 0. Benign-гейт: команды, где секрет-токен живёт лишь в строке-литерале, ничего не исполняя.
+# 0. Benign-гейт: команды, где секрет-токен живет лишь в строке-литерале, ничего не исполняя.
 #    anti-FP: `echo "git push --force main"`, `git commit -m "...>~/.env..."` (док/сообщения).
-#    Условие исполнения = SEP (chaining ;&| или subst $()/backtick) → при нём НЕ benign.
+#    Условие исполнения = SEP (chaining ;&| или subst $()/backtick) → при нем НЕ benign.
 #    echo/printf/: дополнительно требуют отсутствия `>` (иначе `echo x >~/.env` = rule1).
 #    `echo $(cat ~/.ssh/id_)` → есть `$(` → НЕ benign → ловится.
 first="$(printf '%s' "$cmd" | sed -E 's/^[[:space:]]*//' | awk '{print $1}')"
@@ -48,7 +48,7 @@ if printf '%s' "$cmd" | grep -qE '(>>?|tee|cp|mv|dd|install)[^|;&]*(\.env([^.a-z
   deny "запись в секрет-путь/файл через shell"
 fi
 
-# 2. Force-push в защищённые ветки → безусловный блок (необратимо для общей истории).
+# 2. Force-push в защищенные ветки → безусловный блок (необратимо для общей истории).
 if printf '%s' "$cmd" | grep -qE 'git[[:space:]].*push[[:space:]].*(--force([^-]|$)|-f([^a-zA-Z]|$)|--force-with-lease)' \
    && printf '%s' "$cmd" | grep -qE '\b(main|master)\b'; then
   deny "force-push в main/master — необратимо для общей истории, делай через PR"

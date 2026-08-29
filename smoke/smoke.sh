@@ -22,7 +22,7 @@ echo "[секреты] нет credential-shaped токенов (generic-патт
 SECRET_RE='(AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{20,}|xox[baprs]-[A-Za-z0-9-]{10,}|sk-[A-Za-z0-9]{24,}|-----BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY-----|root@[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})'
 chk "нет ключей/private-key/root@ip" "! grep -rInE --exclude-dir=.git --exclude='smoke.sh' --exclude='*.log' \"\$SECRET_RE\" '$HERE' >/dev/null 2>&1"
 
-echo "[личное] нет имён/usernames/приватных идентификаторов владельца"
+echo "[личное] нет имен/usernames/приватных идентификаторов владельца"
 # Источник истины P0.2: grep, не ручной список. RED при срабатывании.
 # Только git-TRACKED файлы (= что реально пушится). gitignored личное (athena.config.sh,
 # *.log) и untracked (audit-2026-06-16/) в публичный каркас не попадают — git grep их не видит.
@@ -67,14 +67,14 @@ chk "composition-principles.md" "[ -f '$SOS/assets/composition-principles.md' ]"
 chk "karpathy-method.md" "[ -f '$SOS/references/karpathy-method.md' ]"
 chk "owner.template.md" "[ -f '$SOS/assets/owner.template.md' ]"
 chk "CLAUDE.template ≤200 строк" "[ \"\$(wc -l < '$SOS/assets/CLAUDE.template.md')\" -le 200 ]"
-chk "CLAUDE.template несёт P3-слоты {{ }}" "grep -q '{{' '$SOS/assets/CLAUDE.template.md'"
+chk "CLAUDE.template несет P3-слоты {{ }}" "grep -q '{{' '$SOS/assets/CLAUDE.template.md'"
 DETECT="$HERE/chezmoi/dot_claude/hooks/onboarding-detect.sh"
 chk "детектор-хук onboarding-detect.sh" "[ -f '$DETECT' ]"
 chk "onboarding-detect синтаксис" "bash -n '$DETECT'"
 chk "SessionStart зарегистрирован в settings.tmpl" "grep -q 'SessionStart' '$HERE/chezmoi/dot_claude/settings.json.tmpl'"
 chk "settings.tmpl ссылается на onboarding-detect" "grep -q 'onboarding-detect.sh' '$HERE/chezmoi/dot_claude/settings.json.tmpl'"
 
-echo "[токен-учёт] паритет канона (скрипты + SessionEnd-wiring)"
+echo "[токен-учет] паритет канона (скрипты + SessionEnd-wiring)"
 chk "session-token-log.sh в каноне" "[ -f '$HERE/chezmoi/dot_claude/scripts/executable_session-token-log.sh' ]"
 chk "token-spend.sh в каноне" "[ -f '$HERE/chezmoi/dot_claude/scripts/executable_token-spend.sh' ]"
 chk "SessionEnd зарегистрирован в settings.tmpl" "grep -q 'SessionEnd' '$HERE/chezmoi/dot_claude/settings.json.tmpl'"
@@ -113,7 +113,7 @@ echo "[bash-guard] exec-gap закрыт (functional, не только синт
 BG="$HERE/chezmoi/dot_claude/hooks/bash-guard.sh"
 chk "bash-guard.sh присутствует" "[ -f '$BG' ]"
 chk "bash-guard синтаксис" "bash -n '$BG'"
-chk "matcher Bash проведён в settings.tmpl" "grep -q '\"Bash\"' '$HERE/chezmoi/dot_claude/settings.json.tmpl'"
+chk "matcher Bash проведен в settings.tmpl" "grep -q '\"Bash\"' '$HERE/chezmoi/dot_claude/settings.json.tmpl'"
 # mock-JSON {command} на stdin → exit 2=блок, 0=пропуск
 bge() { printf '{"tool_input":{"command":"%s"}}' "$1" | bash "$BG" >/dev/null 2>&1; echo $?; }
 chk "redirect в ~/.env → блок"            '[ "$(bge "echo SK > /Users/u/.env")" = 2 ]'
@@ -126,7 +126,7 @@ chk "git push в фичеветку → пропуск"      '[ "$(bge "git push
 
 echo "[анти-дрейф] lockstep-скиллы из structure.md §9 ∃ на диске + нет kb-classify-дрейфа"
 # structure.md §9 называет skills для локстеп-обновления — каждый обязан существовать,
-# иначе правило ссылается в пустоту (мёртвая ссылка в каноне).
+# иначе правило ссылается в пустоту (мертвая ссылка в каноне).
 for s in organize bootstrap-project kb-pipeline; do
   chk "skill '$s' существует (root или chezmoi)" "[ -d '$HERE/skills/$s' ] || [ -d '$HERE/chezmoi/dot_claude/skills/$s' ] || ls -d '$HOME'/.claude/skills/$s >/dev/null 2>&1 || grep -rq '$s' '$HERE/specs' 2>/dev/null"
 done
@@ -163,14 +163,14 @@ for d in "$HERE"/skills/*/; do
   chk "skills/$n → chezmoi идентичен" "[ -d '$cz' ] && diff -rq '$d' '$cz' >/dev/null 2>&1"
 done
 
-echo "[паритет] Claude и Codex видят одно (если развёрнуто)"
+echo "[паритет] Claude и Codex видят одно (если развернуто)"
 if [ -d "$HOME/.claude" ] && [ -d "$HOME/.codex" ]; then
   # Реальная сверка содержимого, не факт существования папок (KGB-23).
   # shellcheck disable=SC2088  # ~ в метках тестов, пути через $HOME в кавычках
   chk "~/.claude/AGENTS.md есть" "[ -e '$HOME/.claude/AGENTS.md' ]"
   # shellcheck disable=SC2088
   chk "~/.codex/AGENTS.md есть (паритет реестра)" "[ -e '$HOME/.codex/AGENTS.md' ]"
-else echo "  · дотфайлы ещё не развёрнуты (skip parity)"; fi
+else echo "  · дотфайлы еще не развернуты (skip parity)"; fi
 
 echo "[рендер] dry-validate шаблонов (merged-source, эмуляция)"
 if [ -x "$HERE/smoke/dry-validate.sh" ]; then

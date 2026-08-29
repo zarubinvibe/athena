@@ -3,8 +3,8 @@
 Athena — переносимая агентная ОС: разворот всей системы владельца на новом Mac одной командой. Этот репо — generic/public каркас (без личных данных).
 
 ## Карта
-- `preinstall.sh` — Шаг 0 руками в Терминале (brew+CLI+claude, нужен пароль Mac; `curl|bash`). Единственное вне Claude. Дальше: `claude` → `/setup-os` (дирижёр установки + опрос интеграций попапами).
-- `bootstrap.sh` — оркестратор слоёв 0–6 (+0b tools, idempotent, `$HOME`, читает `athena.config.sh`). Слой 1 = merged-source: generic `chezmoi/` ⊕ приватный overlay (`ATHENA_PRIVATE_REPO`, Ф4) → один `chezmoi apply`.
+- `preinstall.sh` — Шаг 0 руками в Терминале (brew+CLI+claude, нужен пароль Mac; `curl|bash`). Единственное вне Claude. Дальше: `claude` → `/setup-os` (дирижер установки + опрос интеграций попапами).
+- `bootstrap.sh` — оркестратор слоев 0–6 (+0b tools, idempotent, `$HOME`, читает `athena.config.sh`). Слой 1 = merged-source: generic `chezmoi/` ⊕ приватный overlay (`ATHENA_PRIVATE_REPO`, Ф4) → один `chezmoi apply`.
 - `projects.manifest.example` / `tools.manifest.example` (шаблоны) + `plugins.manifest` (дженерик, трекается) — клон проектов (`~/Проекты`) и инструментов (`~/tools`, Слой 0b ДО Сознания) + плагины Сознания. Реальные `projects.manifest`/`tools.manifest` — gitignored, приходят из приватного overlay.
 - `rules/structure.md` — **конституция раскладки** (источник истины организации ФС). Менять осознанно.
 - `chezmoi/` — шаблоны дотфайлов Сознания (улучшенный канон из best-practices vault).
@@ -21,7 +21,7 @@ Athena — переносимая агентная ОС: разворот все
 - Dry-validate шаблонов (без chezmoi): `smoke/dry-validate.sh` (merge → рендер → plist/json/bash-n + лов неизвестных `{{ }}`)
 
 ## Конвенции
-- Всё идемпотентно, на `$HOME`, без хардкода `/Users/...`. Личное — только в gitignored `athena.config.sh` / Keychain.
+- Все идемпотентно, на `$HOME`, без хардкода `/Users/...`. Личное — только в gitignored `athena.config.sh` / Keychain.
 - Деструктив и внешние действия — за подтверждением; в публичном репо личных данных нет.
 - specs первыми. Изменил раскладку → синхронь `rules/structure.md` + `organize` + bootstrap-project в локстеп.
 - Проектный CLAUDE.md ≤150 строк; детали — в `rules/`, `skills/`, `specs/`.

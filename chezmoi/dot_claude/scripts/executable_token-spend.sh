@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # token-spend.sh — разбивка токен-расхода сессии из jsonl (для конца сессии / token-аудита самообучения).
 # Использование: token-spend.sh [path/to/session.jsonl]
-#   без аргумента — берёт самый свежий jsonl проекта текущего cwd.
+#   без аргумента — берет самый свежий jsonl проекта текущего cwd.
 set -uo pipefail
 
 F="${1:-}"

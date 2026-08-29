@@ -28,16 +28,16 @@ skills, workflows, smoke/release gates. Dashboard и VPS-контур идут �
 
 ## Что важно
 
-Mnemazine показал не "ещё один пайплайн", а рабочую форму agent.os:
+Mnemazine показал не "еще один пайплайн", а рабочую форму agent.os:
 
 ```text
 inbox -> census -> extraction -> understanding -> research -> verification
   -> atomization -> vault -> reconcile -> Graphify -> brief -> visual report
 ```
 
-Для AthenaOS это значит: job не завершён, пока есть только текстовый ответ агента.
-Job завершён, когда есть учёт входов, артефакты, проверка, роль исполнителя,
-краткий отчёт, durable knowledge и следующие действия.
+Для AthenaOS это значит: job не завершен, пока есть только текстовый ответ агента.
+Job завершен, когда есть учет входов, артефакты, проверка, роль исполнителя,
+краткий отчет, durable knowledge и следующие действия.
 
 ## Что конкретно меняется в структуре AthenaOS локально
 
@@ -55,7 +55,7 @@ bootstrap.sh
 ```
 
 Это уже правильный local-first skeleton. Но после уроков Mnemazine ему не хватает
-производственного агентного контура внутри локальных слоёв:
+производственного агентного контура внутри локальных слоев:
 
 - в `Consciousness` есть правила, но нет обязательных role passports для runtime agents;
 - в `Registry` есть routing, но нет деления capabilities на дивизионы с owner/test/gate;
@@ -97,9 +97,9 @@ Layer 6 · Checks
 ### Почему это лучше
 
 1. **Локальная ОС становится самопроверяемой.** Сейчас smoke проверяет установку.
-   Новый слой проверяет поведение агентного workflow: роли, handoffs, отчёты,
+   Новый слой проверяет поведение агентного workflow: роли, handoffs, отчеты,
    eval records.
-2. **`CLAUDE.md`/`AGENTS.md` остаются короткими.** Тяжёлые инструкции уходят в skills,
+2. **`CLAUDE.md`/`AGENTS.md` остаются короткими.** Тяжелые инструкции уходят в skills,
    passports и workflows. Startup context не пухнет.
 3. **Claude и Codex получают один контракт.** Не "скопировали текст правил", а smoke
    доказывает: оба видят одинаковые роли, gates и report contract.
@@ -113,7 +113,7 @@ Layer 6 · Checks
 7. **Rescue между Claude и Codex становится безопасным.** Второй проход получает короткий
    handoff pack без secrets, cache, sessions и raw uploads.
 8. **Graphify работает до dashboard.** Сначала локальная карта repo/vault/skills/agents,
-   потом UI поверх неё.
+   потом UI поверх нее.
 9. **Release gate смотрит на агентную зрелость.** Проверка валит не только shell syntax,
    но и потерю паспортов, broken handoff graph, грязный report, отсутствие action brief.
 10. **Dashboard потом станет тонкой оболочкой.** Он будет нажимать уже проверенные local
@@ -137,7 +137,7 @@ Layer 6 · Checks
 
 ### 2. Directed handoff graph
 
-Нельзя считать рой production-системой без разрешённых переходов.
+Нельзя считать рой production-системой без разрешенных переходов.
 
 AthenaOS graph:
 
@@ -156,7 +156,7 @@ Forbidden transitions:
 
 ### 3. Visual post-run knowledge report
 
-Mnemazine сделал отчёт visual-first: карта, кластеры, ноты, атомы, дубли,
+Mnemazine сделал отчет visual-first: карта, кластеры, ноты, атомы, дубли,
 top actions. AthenaOS job result должен иметь такой же слой.
 
 Минимальный набор артефактов:
@@ -171,7 +171,7 @@ top actions. AthenaOS job result должен иметь такой же сло�
 ### 4. Durable knowledge вместо raw dump
 
 Raw uploads, OCR, logs и tool output не должны попадать в финальный vault/report.
-Mnemazine держит сырьё в cache/quarantine, а в vault пускает только синтез.
+Mnemazine держит сырье в cache/quarantine, а в vault пускает только синтез.
 
 Для AthenaOS:
 
@@ -199,7 +199,7 @@ AthenaOS release gate должен проверять:
 
 ### 6. Capability divisions
 
-Новые Mnemazine-ноты говорят: skills лучше промптов, но ставить всё подряд нельзя.
+Новые Mnemazine-ноты говорят: skills лучше промптов, но ставить все подряд нельзя.
 AthenaOS registry надо видеть как дивизионы, а не как список инструментов:
 
 - `research`;
@@ -275,7 +275,7 @@ Graphify нужен не только для vault. AthenaOS должна име
 2. Добавить локальный `agents/handoff-graph.yaml`.
 3. Добавить `smoke/agent-contract.sh`: проверка passports + handoff graph.
 4. Добавить `skills/agent-session-review` или workflow для локального session tail.
-5. Добавить `scripts/athena-postrun-report.*`: Markdown/HTML/JSON отчёт после важного run.
+5. Добавить `scripts/athena-postrun-report.*`: Markdown/HTML/JSON отчет после важного run.
 6. Добавить `scripts/athena-report-quality-gate.*`: no raw OCR, no local filenames, no secrets.
 7. Расширить `smoke/smoke.sh`: agent contract + report quality synthetic.
 8. Расширить `docs/FEATURES.ru.md`: local agent.os maturity layers.

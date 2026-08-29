@@ -75,8 +75,8 @@ SJ="$MERGED/dot_claude/settings.json.tmpl"
 if [ -f "$SJ" ]; then
   render "$SJ" > "$MERGED/.settings.json"
   if node -e "JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'))" "$MERGED/.settings.json" >/dev/null 2>&1; then grn "settings.json валиден (homeDir+node_bin)"; else red "settings.json НЕВАЛИДЕН после рендера"; fi
-  # C1-гард: double-slash в permissions = glob не матчит реальные пути → щит секретов мёртв.
-  # homeDir absolute; ведущий '/' в шаблоне даёт Read(//Users/...) — навсегда ловим здесь.
+  # C1-гард: double-slash в permissions = glob не матчит реальные пути → щит секретов мертв.
+  # homeDir absolute; ведущий '/' в шаблоне дает Read(//Users/...) — навсегда ловим здесь.
   if grep -qE '"(Read|Write|Edit|Bash)\(//' "$MERGED/.settings.json"; then red "double-slash в permissions (Read(//... ) — щит секретов не матчит, убери ведущий '/' в шаблоне"; else grn "permissions без double-slash (щит секретов матчит)"; fi
 else yel "нет settings.json.tmpl в merged"; fi
 

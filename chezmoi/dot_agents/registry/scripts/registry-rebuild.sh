@@ -4,7 +4,7 @@
 # (Мнемозина-протокол, weekly-update, ручной). Идемпотентный, с lock+debounce-settle.
 #
 # Чейн: build-skill-index → build_registry(+эмбеддинги) → build_views → graphify update → validate.
-# Эффект: новый скилл/знание становится routable «сразу же», не ждёт weekly-батч.
+# Эффект: новый скилл/знание становится routable «сразу же», не ждет weekly-батч.
 #
 # Использование:
 #   registry-rebuild.sh            # debounce-settle (для launchd WatchPaths)
@@ -24,11 +24,11 @@ log(){ printf '[%s] %s\n' "$(date +%Y-%m-%dT%H:%M:%S)" "$*" >> "$LOG"; }
 [ "${1:-}" = "--now" ] || sleep "$SETTLE"
 
 # Lock: один пересбор за раз (mkdir атомарен и портативен — на macOS нет flock).
-# Если уже идёт — выходим (текущий подхватит свежее состояние). Стейл-lock >10мин чистим.
+# Если уже идет — выходим (текущий подхватит свежее состояние). Стейл-lock >10мин чистим.
 if [ -d "$LOCKDIR" ] && [ -n "$(find "$LOCKDIR" -prune -mmin +10 2>/dev/null)" ]; then
   log "стейл-lock >10мин — снимаю"; rmdir "$LOCKDIR" 2>/dev/null || true
 fi
-if ! mkdir "$LOCKDIR" 2>/dev/null; then log "skip: пересбор уже идёт"; exit 0; fi
+if ! mkdir "$LOCKDIR" 2>/dev/null; then log "skip: пересбор уже идет"; exit 0; fi
 trap 'rmdir "$LOCKDIR" 2>/dev/null || true' EXIT
 
 log "REBUILD START (${1:-watch})"

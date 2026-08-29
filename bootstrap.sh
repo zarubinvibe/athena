@@ -57,7 +57,7 @@ layer0_base() {
     warn "Homebrew не установлен. Шаг 0 делается руками: запусти preinstall.sh в Терминале (нужен пароль Mac)."
     return 0
   fi
-  command -v brew >/dev/null && run "brew bundle --file '$HERE/Brewfile'" && ok "Brewfile применён"
+  command -v brew >/dev/null && run "brew bundle --file '$HERE/Brewfile'" && ok "Brewfile применен"
   command -v claude >/dev/null && ok "claude CLI готов" || warn "claude CLI: установи Claude Code"
 }
 
@@ -91,7 +91,7 @@ layer1_brain() {
     ok "дотфайлы из внешнего source ($ATHENA_DOTFILES_REPO)"; return 0
   fi
 
-  ensure_private   # клон overlay, если ещё нет (idempotent; обычно сделан Слоем 0b)
+  ensure_private   # клон overlay, если еще нет (idempotent; обычно сделан Слоем 0b)
 
   # Сборка merged-source: generic база (--delete = чистый старт) ⊕ приватный overlay.
   run "mkdir -p '$MERGED'"
@@ -163,10 +163,10 @@ layer2_registry() {
   phase 2 || return 0; say "Слой 2 — реестр способностей"
   R="$HOME/.agents/registry/scripts"
   [ -d "$R" ] && run "cd '$R' && (node build-skill-index.mjs; python3 build_registry.py; python3 build_views.py; python3 validate.py) || true" \
-    && ok "registry пересобран" || warn "нет ~/.agents/registry — придёт с дотфайлами"
+    && ok "registry пересобран" || warn "нет ~/.agents/registry — придет с дотфайлами"
   # thin-session: спрятать массу личных скиллов из инжекта Claude (skillOverrides=
-  # user-invocable-only) — чистый старт сессии (~11k токенов экономии). Аллоулист остаётся
-  # видимым; остальное достаётся router-скиллом athena-research + UserPromptSubmit-хуком и /name.
+  # user-invocable-only) — чистый старт сессии (~11k токенов экономии). Аллоулист остается
+  # видимым; остальное достается router-скиллом athena-research + UserPromptSubmit-хуком и /name.
   # Идемпотентно, карта выводится из локальной ФС → ~/.claude/settings.local.json.
   GSO="$HOME/.claude/scripts/gen-skill-overrides.mjs"
   [ -f "$GSO" ] && run "node '$GSO'" && ok "thin-session: скиллы скрыты из инжекта (allowlist on)" || true
@@ -219,7 +219,7 @@ layer5_runtime() {
       tgt="$HOME/Library/LaunchAgents/$(basename "$p")"
       rendered="$(sed "s#\$HOME#$HOME#g" "$p")"
       if [ "$DRY" = 1 ]; then echo "  [dry] launchctl bootout/bootstrap gui/$uid $label" | tee -a "$LOG"; loaded=$((loaded+1)); continue; fi
-      # Idempotent (KGB-40): plist без изменений + агент уже загружен → не дёргать (анти-мигание).
+      # Idempotent (KGB-40): plist без изменений + агент уже загружен → не дергать (анти-мигание).
       if [ -f "$tgt" ] && [ "$rendered" = "$(cat "$tgt")" ] && launchctl print "gui/$uid/$label" >/dev/null 2>&1; then
         loaded=$((loaded+1)); continue
       fi
@@ -246,7 +246,7 @@ layer5_runtime() {
 # ───────── Слой 6: smoke ─────────
 layer6_smoke() {
   phase 6 || return 0; say "Слой 6 — smoke (паритет + структура)"
-  [ -x "$HERE/smoke/smoke.sh" ] && run "'$HERE/smoke/smoke.sh'" && ok "smoke зелёный" || warn "нет smoke.sh"
+  [ -x "$HERE/smoke/smoke.sh" ] && run "'$HERE/smoke/smoke.sh'" && ok "smoke зеленый" || warn "нет smoke.sh"
 }
 
 say "Athena bootstrap → лог $LOG  (DRY=$DRY ONLY='${ONLY:-все}')"
@@ -254,6 +254,6 @@ layer0_base; layer_tools; layer1_brain; layer1b_plugins; layer2_registry; layer3
 if [ "$BOOT_ERRS" -eq 0 ]; then
   say "Готово. Проверь лог: $LOG"
 else
-  warn "Готово с ошибками ($BOOT_ERRS) — НЕ всё поднялось. Лог: $LOG"
+  warn "Готово с ошибками ($BOOT_ERRS) — НЕ все поднялось. Лог: $LOG"
   exit 1
 fi

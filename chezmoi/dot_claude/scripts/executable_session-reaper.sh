@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # session-reaper — закрывает зависшие сессии Claude Code.
-# Критерий: состояние Wait (ждёт ввода) И возраст ≥ THRESHOLD_MIN. Exec (активные) и свежие НЕ трогает.
+# Критерий: состояние Wait (ждет ввода) И возраст ≥ THRESHOLD_MIN. Exec (активные) и свежие НЕ трогает.
 # Перед kill — сохраняет хэндофф-запись (проект, возраст, последнее сообщение, путь транскрипта) в ~/.claude/handoff/.
 # DRY_RUN=1 — только показать кандидатов, без kill.
 set -uo pipefail
@@ -35,7 +35,7 @@ log_token_spend() {
     && echo "$(ts) token-spend залогирован (reaped PID $pid)"
 }
 
-# Сессия ждёт СБРОСА ЛИМИТА (не заброшена) → щадить. cwd по PID → транскрипт → маркер лимита в хвосте.
+# Сессия ждет СБРОСА ЛИМИТА (не заброшена) → щадить. cwd по PID → транскрипт → маркер лимита в хвосте.
 # Не смогли проверить → тоже щадим (безопасный дефолт: лучше не убить лимит-сессию).
 is_rate_limited() {
   local pid="$1" tx
@@ -79,7 +79,7 @@ while IFS= read -r line; do
 
   # ⛔ щадить сессии, ждущие СБРОСА ЛИМИТА (не заброшены — возобновятся)
   if is_rate_limited "$pid"; then
-    echo "$(ts) ЩАЖУ PID $pid ($proj, $agetok) — ждёт сброса лимита/непроверяемо, НЕ убиваю"
+    echo "$(ts) ЩАЖУ PID $pid ($proj, $agetok) — ждет сброса лимита/непроверяемо, НЕ убиваю"
     continue
   fi
 
@@ -96,7 +96,7 @@ while IFS= read -r line; do
   if [ "$DRY_RUN" = "1" ]; then
     echo "$(ts) [DRY] кандидат PID $pid ($proj, $agetok) → хэндофф $rec"
   else
-    log_token_spend "$pid"   # token-учёт ДО kill (async SessionEnd не успеет)
+    log_token_spend "$pid"   # token-учет ДО kill (async SessionEnd не успеет)
     kill -TERM "$pid" 2>/dev/null && echo "$(ts) ЗАКРЫТА PID $pid ($proj, $agetok) → $rec" || echo "$(ts) kill fail PID $pid"
     reaped=$((reaped+1))
   fi
