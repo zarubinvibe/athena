@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "family_id": "zarubinvibe-pantheon",
   "catalog_version": "2026-08-26",
   "project": {
@@ -10,6 +10,11 @@
   "visuals": {
     "style_anchor_sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
     "column_reference_sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd",
+    "presentation": {
+      "min_width": 1600,
+      "aspect_ratio": "16:9",
+      "readme_width": "100%"
+    },
     "hero": {
       "source_path": "docs/assets/pantheon/hero.png",
       "source_sha256": "b683878e127c07c09d141b1f4461a1c6169a19cb882ab2936d2241d54b35b934",
@@ -21,7 +26,51 @@
       "source_sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295",
       "published_path": "docs/assets/pantheon/emblem.png",
       "published_sha256": "15413c49301607754a667b30ce85115aeca5db946a63b49f5912f34ab42df295"
-    }
+    },
+    "stages": [
+      {
+        "id": "prepare-mac",
+        "title_en": "Prepare the Mac",
+        "title_ru": "Подготовьте Mac",
+        "diagram_en": "Prepare",
+        "diagram_ru": "Подготовка"
+      },
+      {
+        "id": "choose-setup",
+        "title_en": "Choose what you want",
+        "title_ru": "Выберите, что вам нужно",
+        "diagram_en": "Choose",
+        "diagram_ru": "Выбор"
+      },
+      {
+        "id": "dry-run",
+        "title_en": "Preview every layer",
+        "title_ru": "Посмотрите план целиком",
+        "diagram_en": "Dry run",
+        "diagram_ru": "Прогон"
+      },
+      {
+        "id": "build-layers",
+        "title_en": "Build the layers",
+        "title_ru": "Соберите слои",
+        "diagram_en": "Build",
+        "diagram_ru": "Сборка"
+      },
+      {
+        "id": "smoke-checks",
+        "title_en": "Run the checks",
+        "title_ru": "Прогоните проверки",
+        "diagram_en": "Checks",
+        "diagram_ru": "Проверки"
+      },
+      {
+        "id": "daily-report",
+        "title_en": "Watch the daily state",
+        "title_ru": "Следите за состоянием",
+        "diagram_en": "Report",
+        "diagram_ru": "Отчёт"
+      }
+    ]
   },
   "receipts": {
     "generation_path": ".github/pantheon/generation-receipt.json",
