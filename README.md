@@ -2,7 +2,7 @@
 
 Athena rebuilds a full Claude Code and Codex workspace on a fresh Mac from versioned templates and checks.
 
-[Русский](README.ru.md)
+[Русский](README.ru.md) · [中文](README.zh.md)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Stars](https://img.shields.io/github/stars/zarubinvibe/athena?style=flat&color=C9A87A)](https://github.com/zarubinvibe/athena/stargazers) [![Status](https://img.shields.io/badge/status-reference-brightgreen.svg)](https://github.com/zarubinvibe/athena) [![Olympuz](https://img.shields.io/badge/olympuz-family-B8D6EA.svg)](https://github.com/zarubinvibe/athena#olympuz-family)
 

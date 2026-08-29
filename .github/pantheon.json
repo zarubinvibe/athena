@@ -33,42 +33,54 @@
         "title_en": "Prepare the Mac",
         "title_ru": "Подготовьте Mac",
         "diagram_en": "Prepare",
-        "diagram_ru": "Подготовка"
+        "diagram_ru": "Подготовка",
+        "title_zh": "先把 Mac 准备好",
+        "diagram_zh": "准备"
       },
       {
         "id": "choose-setup",
         "title_en": "Choose what you want",
         "title_ru": "Выберите, что вам нужно",
         "diagram_en": "Choose",
-        "diagram_ru": "Выбор"
+        "diagram_ru": "Выбор",
+        "title_zh": "选择你要的东西",
+        "diagram_zh": "选择"
       },
       {
         "id": "dry-run",
         "title_en": "Preview every layer",
         "title_ru": "Посмотрите план целиком",
         "diagram_en": "Dry run",
-        "diagram_ru": "Прогон"
+        "diagram_ru": "Прогон",
+        "title_zh": "先看完整计划",
+        "diagram_zh": "干跑"
       },
       {
         "id": "build-layers",
         "title_en": "Build the layers",
         "title_ru": "Соберите слои",
         "diagram_en": "Build",
-        "diagram_ru": "Сборка"
+        "diagram_ru": "Сборка",
+        "title_zh": "把各层搭起来",
+        "diagram_zh": "搭建"
       },
       {
         "id": "smoke-checks",
         "title_en": "Run the checks",
         "title_ru": "Прогоните проверки",
         "diagram_en": "Checks",
-        "diagram_ru": "Проверки"
+        "diagram_ru": "Проверки",
+        "title_zh": "跑一遍检查",
+        "diagram_zh": "检查"
       },
       {
         "id": "daily-report",
         "title_en": "Watch the daily state",
         "title_ru": "Следите за состоянием",
         "diagram_en": "Report",
-        "diagram_ru": "Отчёт"
+        "diagram_ru": "Отчёт",
+        "title_zh": "盯住每天的状态",
+        "diagram_zh": "报告"
       }
     ]
   },
