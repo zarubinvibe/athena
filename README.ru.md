@@ -186,7 +186,7 @@ less preinstall.sh
 
 ## Звезда и вклад
 
-Пригодилось? Поставьте Athena звезду: [https://github.com/zarubinvibe/athena](https://github.com/zarubinvibe/athena). Это секунда, а от неё зависит, найдут ли проект другие люди.
+Пригодилось? Поставьте Athena звезду: [https://github.com/zarubinvibe/athena](https://github.com/zarubinvibe/athena). Это секунда, а от нее зависит, найдут ли проект другие люди.
 
 Хотите что-то поправить? Путь короткий: сделайте fork, заведите ветку, оформите commit, отправьте push и откройте Pull Request. Не отправляйте push прямо в `main`: релизный gate его отклонит.
 
