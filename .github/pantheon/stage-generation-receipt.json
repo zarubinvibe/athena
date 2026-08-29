@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "kind": "pantheon-generation",
+  "selection_mode": "managed-frontier",
+  "runtime": "codex",
+  "tool": "image_gen",
+  "route_id": "codex:image_gen:managed-frontier",
+  "model": {
+    "id": "provider-managed",
+    "revision": "provider-managed",
+    "tier": "frontier"
+  },
+  "quality": "highest",
+  "generation_id": "pantheon-stage-series-athena-os-2026-08-29",
+  "generated_at": "2026-08-29T19:10:33Z",
+  "capability_snapshot": {
+    "checked_at": "2026-08-29T19:10:33Z",
+    "routes": [
+      {
+        "id": "codex:image_gen:managed-frontier",
+        "rank": 1,
+        "available": true,
+        "tier": "frontier",
+        "quality": "highest",
+        "model": {
+          "id": "provider-managed",
+          "revision": "provider-managed",
+          "tier": "frontier"
+        }
+      }
+    ]
+  },
+  "prompt": {
+    "path": ".github/pantheon/stage-prompt.txt",
+    "sha256": "03da6cd876ba7380fe112f51dfd6456f96772a20e17a379c2fec075e7ba84dbb"
+  },
+  "references": [
+    {
+      "role": "style-anchor",
+      "sha256": "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2"
+    },
+    {
+      "role": "column-reference",
+      "sha256": "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "codex-managed-stage-series",
+      "route_id": "codex:image_gen:managed-frontier",
+      "generation_id": "pantheon-stage-series-athena-os-2026-08-29",
+      "prompt_sha256": "03da6cd876ba7380fe112f51dfd6456f96772a20e17a379c2fec075e7ba84dbb",
+      "reference_sha256": [
+        "ce524f9d22cb0092cb17aa280832e1b2ab2a77a0e01602065ec502232a3bb2d2",
+        "9d32edd56ac55c4dd6d0425a28a2ac35035e9ab09073fc8ce0c1414b2edfb1bd"
+      ],
+      "outputs": [
+        {
+          "role": "stage-01-prepare-mac",
+          "source_sha256": "50f28d73136ec68f28f1506d2ad8e52a72e47e89272c4c398152910d28029f0c",
+          "published_sha256": "50f28d73136ec68f28f1506d2ad8e52a72e47e89272c4c398152910d28029f0c"
+        },
+        {
+          "role": "stage-02-choose-setup",
+          "source_sha256": "0e3fd41248e86d6fae5acb44cc371dc9e873a2920bc16b145efebb8c6cff6c68",
+          "published_sha256": "0e3fd41248e86d6fae5acb44cc371dc9e873a2920bc16b145efebb8c6cff6c68"
+        },
+        {
+          "role": "stage-03-dry-run",
+          "source_sha256": "9c5e6f99642c55933c64e9652cac8fe04fdda676f2435d6793749ac0d8f26293",
+          "published_sha256": "9c5e6f99642c55933c64e9652cac8fe04fdda676f2435d6793749ac0d8f26293"
+        },
+        {
+          "role": "stage-04-build-layers",
+          "source_sha256": "9bbf8989c999cef7b1d93c9f5406f3fa3b38b058a693b7eeaeb342389fd71a26",
+          "published_sha256": "9bbf8989c999cef7b1d93c9f5406f3fa3b38b058a693b7eeaeb342389fd71a26"
+        },
+        {
+          "role": "stage-05-smoke-checks",
+          "source_sha256": "c9a743e0c0b55a07c8141266cee4335e3139ec939492e671e968af47e8765047",
+          "published_sha256": "c9a743e0c0b55a07c8141266cee4335e3139ec939492e671e968af47e8765047"
+        },
+        {
+          "role": "stage-06-daily-report",
+          "source_sha256": "361deb2be1f8e8de368aa19eceb35ed2510dcb3dab42cf16366690cdeb91f89e",
+          "published_sha256": "361deb2be1f8e8de368aa19eceb35ed2510dcb3dab42cf16366690cdeb91f89e"
+        }
+      ]
+    }
+  ],
+  "winner_id": "codex-managed-stage-series"
+}

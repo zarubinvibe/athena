@@ -78,11 +78,15 @@ Bootstrap runs in ordered layers. Preview the plan, run a single layer, or build
 
 `preinstall.sh` installs the base tools and a pinned Claude Code CLI, then leaves the repository at `~/athena`. You can read the script before running it.
 
+<p align="center"><img src="docs/assets/pantheon/workflow/01-prepare-mac.png" alt="Athena workflow stage 1: Prepare the Mac, drawn as a wide Pantheon marble scene" width="100%"></p>
+
 **You get:** a Mac that can run the rest of the setup.
 
 ### Step 2: Choose what you want
 
 Start Claude Code in the repository and type `/setup-os`. It asks which integrations and personal layers you want and writes the chosen configuration. Anything skipped can be added later.
+
+<p align="center"><img src="docs/assets/pantheon/workflow/02-choose-setup.png" alt="Athena workflow stage 2: Choose what you want, drawn as a wide Pantheon marble scene" width="100%"></p>
 
 **You get:** a configuration file that describes your machine, not someone else's.
 
@@ -90,11 +94,15 @@ Start Claude Code in the repository and type `/setup-os`. It asks which integrat
 
 `./bootstrap.sh --dry-run` prints what each layer would do. Nothing is installed, cloned, or overwritten during the preview.
 
+<p align="center"><img src="docs/assets/pantheon/workflow/03-dry-run.png" alt="Athena workflow stage 3: Preview every layer, drawn as a wide Pantheon marble scene" width="100%"></p>
+
 **You get:** a readable plan you can accept or edit before the real run.
 
 ### Step 4: Build the layers
 
 Layers run in order: Homebrew baseline, optional tools, merged chezmoi templates, Claude Code plugins, the capability registry, project clones, an optional knowledge vault, secret storage and scheduled jobs.
+
+<p align="center"><img src="docs/assets/pantheon/workflow/04-build-layers.png" alt="Athena workflow stage 4: Build the layers, drawn as a wide Pantheon marble scene" width="100%"></p>
 
 **You get:** a workspace where agents, skills, and projects are back in place.
 
@@ -102,11 +110,15 @@ Layers run in order: Homebrew baseline, optional tools, merged chezmoi templates
 
 The same checks the repository workflow runs are available locally: shellcheck, the smoke suite, and a clean-room render into a temporary directory.
 
+<p align="center"><img src="docs/assets/pantheon/workflow/05-smoke-checks.png" alt="Athena workflow stage 5: Run the checks, drawn as a wide Pantheon marble scene" width="100%"></p>
+
 **You get:** green checks, or a named file and line to fix.
 
 ### Step 6: Watch the daily state
 
 After the agent layer is installed, a status command reads local records and exits red when a job failed without a retry. A weekly command builds an HTML report from the same data.
+
+<p align="center"><img src="docs/assets/pantheon/workflow/06-daily-report.png" alt="Athena workflow stage 6: Watch the daily state, drawn as a wide Pantheon marble scene" width="100%"></p>
 
 **You get:** a short answer to the question "did anything quietly break this week".
 

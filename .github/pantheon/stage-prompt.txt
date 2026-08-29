@@ -1,0 +1,39 @@
+You generate a coherent series of wide Pantheon workflow scenes with your built-in image_gen tool at the highest quality. Generate them one by one, in order.
+
+Pass these references to EVERY generation:
+1. $HOME/.agents/skills/public-repo-release-gate/assets/pantheon-style-anchor.png
+2. $HOME/.agents/skills/public-repo-release-gate/assets/pantheon-column.png
+3. docs/assets/pantheon/hero.png
+
+Hard constraints for every frame:
+- Same world, same figure, same camera height and lens as the hero. The classical white marble column appears in every frame.
+- Warm ivory background, white marble, soft daylight from upper left, long gentle shadows, generous empty space.
+- Sky blue means public flow and movement. Muted gold means private or valuable material.
+- Wide 16:9, at least 1600 px on the long side.
+- Absolutely no letters, digits, logos, watermarks, UI chrome or pseudo-text anywhere in the image. Documents and cards stay blank.
+- No dark background, no neon, no purple gradient, no cinematic smoke, no stock-photo look.
+- Each frame shows its own step. Do not repeat the hero composition.
+
+After each image, save it to the exact path given for that scene, then print the path and the pixel size. Do not modify any other file. Do not commit.
+
+Project: Athena, the portable agent workspace. Figure: Athena in white marble with an owl and a round shield. Recurring props: thin marble plates stacked as layers, an owl that watches each step, blue threads for what is being installed.
+
+Generate these six scenes:
+
+docs/assets/pantheon/workflow/01-prepare-mac.png
+A bare marble workbench beside the column, empty and clean. A set of simple marble tools arrives on blue threads and settles into shallow slots in the bench. The owl sits on the column watching the delivery. Athena stands at the right edge, arms lowered.
+
+docs/assets/pantheon/workflow/02-choose-setup.png
+Athena holds her round shield low as a tray; above it float five blank glass tiles, three tilted toward her as chosen, two drifting away. One question card of clear glass hovers between her and the viewer. The owl looks at the chosen tiles.
+
+docs/assets/pantheon/workflow/03-dry-run.png
+A translucent ghost version of a finished workspace hovers above the bench: layered marble plates drawn only as thin blue outlines, nothing solid, nothing installed. Athena studies it with one hand raised, the real bench below still empty.
+
+docs/assets/pantheon/workflow/04-build-layers.png
+Seven solid marble plates settle one above another into a low ordered stack beside the column, each plate slightly smaller than the one below. Blue threads feed the stack from the left. The owl has moved onto the top plate.
+
+docs/assets/pantheon/workflow/05-smoke-checks.png
+Athena's round shield is raised in front of the finished stack; thin blue rays pass through the plates and come out clean on the other side. One plate is lit slightly brighter, checked and accepted. Nothing is broken.
+
+docs/assets/pantheon/workflow/06-daily-report.png
+A calm morning scene: a single sheet of clear glass rests on the marble bench with seven blank ruled rows and one small gold marker on one row. The owl stands beside it. Athena is half turned away, already leaving.

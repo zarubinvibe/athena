@@ -37,7 +37,11 @@
         "diagram_en": "Prepare",
         "diagram_ru": "Подготовка",
         "title_zh": "先把 Mac 准备好",
-        "diagram_zh": "准备"
+        "diagram_zh": "准备",
+        "source_path": "docs/assets/pantheon/workflow/01-prepare-mac.png",
+        "source_sha256": "50f28d73136ec68f28f1506d2ad8e52a72e47e89272c4c398152910d28029f0c",
+        "published_path": "docs/assets/pantheon/workflow/01-prepare-mac.png",
+        "published_sha256": "50f28d73136ec68f28f1506d2ad8e52a72e47e89272c4c398152910d28029f0c"
       },
       {
         "id": "choose-setup",
@@ -46,7 +50,11 @@
         "diagram_en": "Choose",
         "diagram_ru": "Выбор",
         "title_zh": "选择你要的东西",
-        "diagram_zh": "选择"
+        "diagram_zh": "选择",
+        "source_path": "docs/assets/pantheon/workflow/02-choose-setup.png",
+        "source_sha256": "0e3fd41248e86d6fae5acb44cc371dc9e873a2920bc16b145efebb8c6cff6c68",
+        "published_path": "docs/assets/pantheon/workflow/02-choose-setup.png",
+        "published_sha256": "0e3fd41248e86d6fae5acb44cc371dc9e873a2920bc16b145efebb8c6cff6c68"
       },
       {
         "id": "dry-run",
@@ -55,7 +63,11 @@
         "diagram_en": "Dry run",
         "diagram_ru": "Прогон",
         "title_zh": "先看完整计划",
-        "diagram_zh": "干跑"
+        "diagram_zh": "干跑",
+        "source_path": "docs/assets/pantheon/workflow/03-dry-run.png",
+        "source_sha256": "9c5e6f99642c55933c64e9652cac8fe04fdda676f2435d6793749ac0d8f26293",
+        "published_path": "docs/assets/pantheon/workflow/03-dry-run.png",
+        "published_sha256": "9c5e6f99642c55933c64e9652cac8fe04fdda676f2435d6793749ac0d8f26293"
       },
       {
         "id": "build-layers",
@@ -64,7 +76,11 @@
         "diagram_en": "Build",
         "diagram_ru": "Сборка",
         "title_zh": "把各层搭起来",
-        "diagram_zh": "搭建"
+        "diagram_zh": "搭建",
+        "source_path": "docs/assets/pantheon/workflow/04-build-layers.png",
+        "source_sha256": "9bbf8989c999cef7b1d93c9f5406f3fa3b38b058a693b7eeaeb342389fd71a26",
+        "published_path": "docs/assets/pantheon/workflow/04-build-layers.png",
+        "published_sha256": "9bbf8989c999cef7b1d93c9f5406f3fa3b38b058a693b7eeaeb342389fd71a26"
       },
       {
         "id": "smoke-checks",
@@ -73,7 +89,11 @@
         "diagram_en": "Checks",
         "diagram_ru": "Проверки",
         "title_zh": "跑一遍检查",
-        "diagram_zh": "检查"
+        "diagram_zh": "检查",
+        "source_path": "docs/assets/pantheon/workflow/05-smoke-checks.png",
+        "source_sha256": "c9a743e0c0b55a07c8141266cee4335e3139ec939492e671e968af47e8765047",
+        "published_path": "docs/assets/pantheon/workflow/05-smoke-checks.png",
+        "published_sha256": "c9a743e0c0b55a07c8141266cee4335e3139ec939492e671e968af47e8765047"
       },
       {
         "id": "daily-report",
@@ -82,12 +102,18 @@
         "diagram_en": "Report",
         "diagram_ru": "Отчёт",
         "title_zh": "盯住每天的状态",
-        "diagram_zh": "报告"
+        "diagram_zh": "报告",
+        "source_path": "docs/assets/pantheon/workflow/06-daily-report.png",
+        "source_sha256": "361deb2be1f8e8de368aa19eceb35ed2510dcb3dab42cf16366690cdeb91f89e",
+        "published_path": "docs/assets/pantheon/workflow/06-daily-report.png",
+        "published_sha256": "361deb2be1f8e8de368aa19eceb35ed2510dcb3dab42cf16366690cdeb91f89e"
       }
     ]
   },
   "receipts": {
     "generation_path": ".github/pantheon/generation-receipt.json",
-    "visual_judge_path": ".github/pantheon/visual-judge-receipt.json"
+    "visual_judge_path": ".github/pantheon/visual-judge-receipt.json",
+    "stage_generation_path": ".github/pantheon/stage-generation-receipt.json",
+    "stage_visual_judge_path": ".github/pantheon/stage-visual-judge-receipt.json"
   }
 }

@@ -78,11 +78,15 @@ Bootstrap 按顺序分层执行。可以先看计划，可以只跑一层，也�
 
 `preinstall.sh` 装上基础工具和一个固定版本的 Claude Code 命令行，然后把仓库留在 `~/athena`。脚本可以先读再跑。
 
+<p align="center"><img src="docs/assets/pantheon/workflow/01-prepare-mac.png" alt="Pantheon 宽幅大理石场景：Athena 工作流程第 1 步，先把 Mac 准备好" width="100%"></p>
+
 **你会得到：** 一台可以承接后续全部配置的 Mac。
 
 ### 第 2 步：选择你要的东西
 
 在仓库里启动 Claude Code，输入 `/setup-os`。它会问你要哪些集成和个人层，并写下选中的配置。跳过的部分之后还能补。
+
+<p align="center"><img src="docs/assets/pantheon/workflow/02-choose-setup.png" alt="Pantheon 宽幅大理石场景：Athena 工作流程第 2 步，选择你要的东西" width="100%"></p>
 
 **你会得到：** 一份描述你这台机器的配置文件，而不是别人的。
 
@@ -90,11 +94,15 @@ Bootstrap 按顺序分层执行。可以先看计划，可以只跑一层，也�
 
 `./bootstrap.sh --dry-run` 打印每一层会做什么。预览过程中不安装、不克隆、不覆盖。
 
+<p align="center"><img src="docs/assets/pantheon/workflow/03-dry-run.png" alt="Pantheon 宽幅大理石场景：Athena 工作流程第 3 步，先看完整计划" width="100%"></p>
+
 **你会得到：** 一份看得懂的计划，正式执行前可以接受或修改。
 
 ### 第 4 步：把各层搭起来
 
 各层按顺序执行：Homebrew 基线、可选工具、合并后的 chezmoi 模板、Claude Code 插件、能力注册表、项目克隆、可选知识库、密钥存储和定时任务。
+
+<p align="center"><img src="docs/assets/pantheon/workflow/04-build-layers.png" alt="Pantheon 宽幅大理石场景：Athena 工作流程第 4 步，把各层搭起来" width="100%"></p>
 
 **你会得到：** 一个智能体、技能和项目都归位的工作环境。
 
@@ -102,11 +110,15 @@ Bootstrap 按顺序分层执行。可以先看计划，可以只跑一层，也�
 
 仓库工作流里用的那套检查在本地同样可用：shellcheck、smoke 套件，以及写进临时目录的洁净渲染。
 
+<p align="center"><img src="docs/assets/pantheon/workflow/05-smoke-checks.png" alt="Pantheon 宽幅大理石场景：Athena 工作流程第 5 步，跑一遍检查" width="100%"></p>
+
 **你会得到：** 全绿的检查，或者指名到文件和行号的问题。
 
 ### 第 6 步：盯住每天的状态
 
 智能体层装好之后，状态命令会读本地记录，任务失败且没有重试时它会变红。每周命令用同一批数据生成 HTML 报告。
+
+<p align="center"><img src="docs/assets/pantheon/workflow/06-daily-report.png" alt="Pantheon 宽幅大理石场景：Athena 工作流程第 6 步，盯住每天的状态" width="100%"></p>
 
 **你会得到：** 对“这一周有没有什么悄悄坏掉”的一个简短回答。
 
