@@ -34,3 +34,6 @@ The smoke suite must finish with `SMOKE OK`. Do not describe work as complete wh
 - `AGENTS.md` holds the rules; `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`, and
   `.cursor/rules/*.mdc` only point here.
 - Run `public-repo-gate check --repo . --release-intent public` before any push, and fix every blocker.
+- Agent work here is tracked by Entire, and its checkpoints go to the separate private repository
+  `zarubinvibe/athena-checkpoints`. Session capture stays on: a public repository never stores its own
+  checkpoints, and the release gate blocks a push when tracking is disabled or the checkpoint repository is public.
