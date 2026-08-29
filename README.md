@@ -1,6 +1,6 @@
 # Athena
 
-Athena rebuilds a full Claude Code and Codex workspace on a fresh Mac from versioned templates and checks.
+Athena rebuilds your working environment on a clean Mac: rules, skills, registries and projects come back where they were.
 
 [Русский](README.ru.md) · [中文](README.zh.md)
 
@@ -35,21 +35,21 @@ Athena rebuilds a full Claude Code and Codex workspace on a fresh Mac from versi
 
 ## What This Is
 
-Athena is a portable agent operating system for macOS. It keeps your agent setup as tracked templates, manifests, and checks, then rebuilds that setup on a new machine layer by layer. Rules, skills, projects, and knowledge come back where they belong.
+Athena is a portable agent environment. Everything you spent months tuning it keeps as versioned templates and checks, then rebuilds it layer by layer on another machine. Not a list of instructions, a program you can run twice.
 
 ## Why It Helps
 
-A working agent setup grows for months: configs, skills, hooks, registries, cloned projects. A new laptop or a broken profile wipes it. Athena turns that setup into something you can rebuild in one evening instead of remembering it by hand.
+A setup grows for half a year: configs, skills, hooks, registries, cloned projects. A new laptop wipes it in an evening and half of it never comes back to mind. Athena turns that setup into something that rebuilds itself while you drink coffee.
 
 ## The Main Advantage
 
-**Main advantage:** the setup is a repeatable program, not a memory.
+**Main advantage:** the environment is rebuilt by a program, not from memory.
 
-**Why this is better:** every layer can run again without breaking what already exists, and `--dry-run` shows the whole plan before a single file is written.
+**Why this is better:** Any layer can be run again without breaking what stands, and `--dry-run` shows the whole plan before the first file is written.
 
 ## How It Works
 
-Bootstrap runs ordered layers. You can preview them, run one slice, or run the whole chain.
+Bootstrap runs in ordered layers. Preview the plan, run a single layer, or build the whole chain.
 
 <!-- workflow-diagram:start -->
 
@@ -112,7 +112,7 @@ After the agent layer is installed, a status command reads local records and exi
 
 ## Quickstart
 
-Athena targets macOS. You need an administrator account and network access for Homebrew, npm, and Git.
+Athena runs on macOS. You need an administrator account and network access for Homebrew, npm and Git.
 
 ```bash
 git clone https://github.com/zarubinvibe/athena.git "$HOME/athena"
@@ -125,7 +125,7 @@ In a hurry on a fresh Mac? Run the same tracked script directly: `curl -fsSL htt
 
 Never done this before? [The onboarding](docs/ONBOARDING.md) walks the whole first run step by step and says what you see after every command.
 
-**You get:** the base tools are installed, the repository sits at `~/athena`, and `/setup-os` is ready to ask what you want.
+**You get:** the base tools are in place, the repository sits at `~/athena`, and `/athena-setup` is ready to ask what you want.
 
 ## Simple Comparison
 
@@ -158,11 +158,11 @@ Never done this before? [The onboarding](docs/ONBOARDING.md) walks the whole fir
 - Telemetry: Athena's own scripts send nothing. Installed third-party tools keep their own policies.
 - Recovery: `athena-update` takes a backup and shows a diff before applying live changes.
 
-Read [SECURITY.md](SECURITY.md) before running Athena on a machine that holds important data.
+Before running Athena on a machine that holds important data, read [SECURITY.md](SECURITY.md).
 
 ## Limits
 
-Status: public macOS reference implementation. Automated checks cover shell syntax, templates, hygiene, agent contracts, and a clean-room render.
+Status: public macOS reference implementation. The checks cover syntax, templates, hygiene and a clean-room render.
 
 - macOS only: Homebrew prompts, Xcode dialogs, and launchd behaviour are platform specific.
 - A first install on a fresh Mac still needs the manual acceptance checklist.
@@ -170,7 +170,7 @@ Status: public macOS reference implementation. Automated checks cover shell synt
 - Private repositories, credentials, and personal knowledge are yours and cannot be validated by the public clone.
 - Third-party versions and login flows change on their own schedule.
 
-Deeper reading: [the full reference](docs/DETAILS.md), [feature reference](docs/FEATURES.en.md), [filesystem contract](rules/structure.md), [roadmap](specs/00-roadmap.md), and [live acceptance](smoke/live-acceptance.md).
+Deeper: [the full reference](docs/DETAILS.md), [feature reference](docs/FEATURES.en.md), [filesystem contract](rules/structure.md), [roadmap](specs/00-roadmap.md), [live acceptance](smoke/live-acceptance.md).
 
 ## Star And Contribute
 

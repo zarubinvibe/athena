@@ -14,16 +14,16 @@
     "en": {
       "title": "Athena",
       "name": "Athena",
-      "tagline": "Athena rebuilds a full Claude Code and Codex workspace on a fresh Mac from versioned templates and checks.",
+      "tagline": "Athena rebuilds your working environment on a clean Mac: rules, skills, registries and projects come back where they were.",
       "hero_alt": "Athena in white marble with an owl, a round shield, and layered knowledge planes beside the classical column",
-      "what": "Athena is a portable agent operating system for macOS. It keeps your agent setup as tracked templates, manifests, and checks, then rebuilds that setup on a new machine layer by layer. Rules, skills, projects, and knowledge come back where they belong.",
-      "why": "A working agent setup grows for months: configs, skills, hooks, registries, cloned projects. A new laptop or a broken profile wipes it. Athena turns that setup into something you can rebuild in one evening instead of remembering it by hand.",
-      "advantage": "the setup is a repeatable program, not a memory.",
-      "better": "every layer can run again without breaking what already exists, and `--dry-run` shows the whole plan before a single file is written.",
-      "how": "Bootstrap runs ordered layers. You can preview them, run one slice, or run the whole chain.",
-      "quick_intro": "Athena targets macOS. You need an administrator account and network access for Homebrew, npm, and Git.",
+      "what": "Athena is a portable agent environment. Everything you spent months tuning it keeps as versioned templates and checks, then rebuilds it layer by layer on another machine. Not a list of instructions, a program you can run twice.",
+      "why": "A setup grows for half a year: configs, skills, hooks, registries, cloned projects. A new laptop wipes it in an evening and half of it never comes back to mind. Athena turns that setup into something that rebuilds itself while you drink coffee.",
+      "advantage": "the environment is rebuilt by a program, not from memory.",
+      "better": "Any layer can be run again without breaking what stands, and `--dry-run` shows the whole plan before the first file is written.",
+      "how": "Bootstrap runs in ordered layers. Preview the plan, run a single layer, or build the whole chain.",
+      "quick_intro": "Athena runs on macOS. You need an administrator account and network access for Homebrew, npm and Git.",
       "quick_extra": "In a hurry on a fresh Mac? Run the same tracked script directly: `curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`. No Git at all? Take [the ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) and unpack it. Then open Claude Code in the folder and type `/setup-os`. First time here? Open the project in Claude Code and run `/athena-setup`: the install goes as a conversation, layer by layer, with a dry run before anything is written.",
-      "quick_result": "the base tools are installed, the repository sits at `~/athena`, and `/setup-os` is ready to ask what you want.",
+      "quick_result": "the base tools are in place, the repository sits at `~/athena`, and `/athena-setup` is ready to ask what you want.",
       "compare": [
         [
           "**Athena**",
@@ -69,8 +69,8 @@
         "Telemetry: Athena's own scripts send nothing. Installed third-party tools keep their own policies.",
         "Recovery: `athena-update` takes a backup and shows a diff before applying live changes."
       ],
-      "safety_tail": "Read [SECURITY.md](SECURITY.md) before running Athena on a machine that holds important data.",
-      "status": "Status: public macOS reference implementation. Automated checks cover shell syntax, templates, hygiene, agent contracts, and a clean-room render.",
+      "safety_tail": "Before running Athena on a machine that holds important data, read [SECURITY.md](SECURITY.md).",
+      "status": "Status: public macOS reference implementation. The checks cover syntax, templates, hygiene and a clean-room render.",
       "limits": [
         "macOS only: Homebrew prompts, Xcode dialogs, and launchd behaviour are platform specific.",
         "A first install on a fresh Mac still needs the manual acceptance checklist.",
@@ -78,23 +78,23 @@
         "Private repositories, credentials, and personal knowledge are yours and cannot be validated by the public clone.",
         "Third-party versions and login flows change on their own schedule."
       ],
-      "docs": "Deeper reading: [the full reference](docs/DETAILS.md), [feature reference](docs/FEATURES.en.md), [filesystem contract](rules/structure.md), [roadmap](specs/00-roadmap.md), and [live acceptance](smoke/live-acceptance.md).",
+      "docs": "Deeper: [the full reference](docs/DETAILS.md), [feature reference](docs/FEATURES.en.md), [filesystem contract](rules/structure.md), [roadmap](specs/00-roadmap.md), [live acceptance](smoke/live-acceptance.md).",
       "license": "MIT. See [LICENSE](LICENSE).",
       "welcome": "Hello. I moved my setup to a new Mac by hand one time too many and forgot half of it: rules, skills, hooks, registries, cloned projects.\n\nAthena keeps that setup as a program instead of a memory. If it gives you your environment back in one evening, take it and make it yours."
     },
     "ru": {
       "title": "Athena",
       "name": "Athena",
-      "tagline": "Athena заново собирает рабочую среду Claude Code и Codex на чистом Mac из версионных шаблонов и проверок.",
+      "tagline": "Athena заново собирает вашу рабочую среду на чистом Mac: правила, скиллы, реестры и проекты возвращаются на место.",
       "hero_alt": "Афина из белого мрамора с совой, круглым щитом и слоями знания у классической колонны",
-      "what": "Athena это переносимая агентная ОС для macOS. Она держит вашу настройку в виде версионных шаблонов, манифестов и проверок, а потом слой за слоем собирает её на новой машине. Правила, скиллы, проекты и знания возвращаются на свои места.",
-      "why": "Рабочая агентная настройка растёт месяцами: конфиги, скиллы, хуки, реестры, клонированные проекты. Новый ноутбук или сломанный профиль стирает всё. Athena превращает эту настройку в то, что собирается за вечер, а не вспоминается руками.",
-      "advantage": "настройка это повторяемая программа, а не память.",
-      "better": "любой слой можно прогнать повторно, не ломая уже собранное, а `--dry-run` показывает весь план до записи первого файла.",
-      "how": "Bootstrap идёт упорядоченными слоями. Их можно посмотреть заранее, запустить один кусок или прогнать всю цепочку.",
-      "quick_intro": "Athena рассчитана на macOS. Нужны учётная запись администратора и сеть для Homebrew, npm и Git.",
+      "what": "Athena это переносимая агентная среда. Всё, что вы месяцами настраивали, она держит как версионные шаблоны и проверки, а потом собирает слой за слоем на другой машине. Не список инструкций, а программа, которую можно запустить второй раз.",
+      "why": "Настройка растёт полгода: конфиги, скиллы, хуки, реестры, клонированные проекты. Новый ноутбук стирает её за вечер, и половина не вспоминается никогда. Athena превращает эту настройку в то, что собирается заново, пока вы пьёте кофе.",
+      "advantage": "среда собирается программой, а не по памяти.",
+      "better": "Любой слой можно прогнать повторно, ничего не сломав, а `--dry-run` показывает весь план до того, как запишется первый файл.",
+      "how": "Bootstrap идёт слоями по порядку. Можно посмотреть план, прогнать один слой или собрать всё сразу.",
+      "quick_intro": "Athena работает на macOS. Нужны админский доступ и сеть для Homebrew, npm и Git.",
       "quick_extra": "Спешите на чистом Mac? Запустите тот же версионный скрипт напрямую: `curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`. Совсем нет Git? Возьмите [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) и распакуйте. Дальше откройте Claude Code в этой папке и введите `/setup-os`. Первый раз? Откройте проект в Claude Code и запустите `/athena-setup`: установка пройдёт разговором, слой за слоем, с сухим прогоном до первой записи.",
-      "quick_result": "базовые инструменты установлены, репозиторий лежит в `~/athena`, а `/setup-os` готов спросить, что вам нужно.",
+      "quick_result": "базовые инструменты стоят, репозиторий лежит в `~/athena`, а `/athena-setup` готов спросить, что вам нужно.",
       "compare": [
         [
           "**Athena**",
@@ -140,8 +140,8 @@
         "Телеметрия: собственные скрипты Athena ничего не отправляют. У сторонних инструментов свои правила.",
         "Восстановление: `athena-update` делает резервную копию и показывает diff до применения изменений."
       ],
-      "safety_tail": "Прочитайте [SECURITY.md](SECURITY.md), прежде чем запускать Athena на машине с важными данными.",
-      "status": "Статус: публичная эталонная реализация для macOS. Автопроверки закрывают синтаксис shell, шаблоны, гигиену, агентские контракты и чистый рендер.",
+      "safety_tail": "Прежде чем запускать Athena на машине с важными данными, прочитайте [SECURITY.md](SECURITY.md).",
+      "status": "Статус: публичная эталонная реализация для macOS. Проверки закрывают синтаксис, шаблоны, гигиену и чистый рендер.",
       "limits": [
         "Только macOS: запросы Homebrew, окна Xcode и поведение launchd зависят от платформы.",
         "Первая установка на чистом Mac всё ещё требует ручного чек-листа приёмки.",
@@ -149,23 +149,23 @@
         "Приватные репозитории, доступы и личные знания ваши, публичный клон их не проверяет.",
         "Версии сторонних инструментов и способы входа меняются по своему расписанию."
       ],
-      "docs": "Глубже: [полный разбор](docs/DETAILS.ru.md), [описание возможностей](docs/FEATURES.en.md), [контракт файловой системы](rules/structure.md), [дорожная карта](specs/00-roadmap.md) и [живая приёмка](smoke/live-acceptance.md).",
+      "docs": "Глубже: [полный разбор](docs/DETAILS.ru.md), [описание возможностей](docs/FEATURES.en.md), [контракт файловой системы](rules/structure.md), [дорожная карта](specs/00-roadmap.md), [живая приёмка](smoke/live-acceptance.md).",
       "license": "MIT. Текст в файле [LICENSE](LICENSE).",
       "welcome": "Привет. Я слишком много раз переносил настройку на новый Mac руками и каждый раз забывал половину: правила, скиллы, хуки, реестры, клонированные проекты.\n\nAthena держит эту настройку как программу, а не как память. Если она вернёт вам среду за вечер, забирайте и делайте своей."
     },
     "zh": {
       "title": "Athena",
       "name": "Athena",
-      "tagline": "Athena 用版本化的模板和检查，在一台新的 Mac 上重建完整的 Claude Code 与 Codex 工作环境。",
+      "tagline": "Athena 在一台干净的 Mac 上重建你的工作环境：规则、技能、注册表和项目都回到原位。",
       "hero_alt": "白色大理石的雅典娜带着猫头鹰和圆盾站在古典石柱旁，身后是一层层展开的知识平面",
-      "what": "Athena 是一套可携带的 macOS 智能体操作系统。它把你的智能体配置保存成版本化的模板、清单和检查，然后在新机器上一层一层重建。规则、技能、项目和知识都回到原来的位置。",
-      "why": "一套好用的智能体环境要长好几个月：配置、技能、钩子、注册表、克隆好的项目。换一台笔记本或者账户损坏，全没了。Athena 让这套环境变成一个晚上就能重建的东西，而不是靠脑子回忆。",
-      "advantage": "环境是一段可以重复执行的程序，而不是记忆。",
-      "better": "每一层都可以再跑一次而不破坏已有的东西，`--dry-run` 会在写下第一个文件之前把整个计划打出来。",
-      "how": "引导脚本按顺序执行分层。你可以先预览，可以只跑其中一层，也可以跑完整条链。",
-      "quick_intro": "Athena 面向 macOS。需要管理员账户，以及 Homebrew、npm 和 Git 的网络访问。",
+      "what": "Athena 是一套可携带的智能体环境。你花几个月调好的东西，它保存成版本化的模板和检查，然后在另一台机器上一层层重建。不是一份说明清单，而是一段可以跑第二遍的程序。",
+      "why": "一套配置要长半年：配置文件、技能、钩子、注册表、克隆好的项目。换台笔记本，一个晚上全没，其中一半再也想不起来。Athena 把这套配置变成你喝咖啡的时候自己重建好的东西。",
+      "advantage": "环境由程序重建，不靠记忆。",
+      "better": "任何一层都能再跑一遍而不破坏已有的东西，`--dry-run` 会在写下第一个文件之前把整个计划给你看。",
+      "how": "Bootstrap 按顺序分层执行。可以先看计划，可以只跑一层，也可以把整条链跑完。",
+      "quick_intro": "Athena 只在 macOS 上运行。需要管理员账户，以及 Homebrew、npm 和 Git 的网络访问。",
       "quick_extra": "在新 Mac 上赶时间？直接执行同一个受版本管理的脚本：`curl -fsSL https://raw.githubusercontent.com/zarubinvibe/athena/main/preinstall.sh | bash`。完全没有 Git？拿 [ZIP](https://github.com/zarubinvibe/athena/archive/refs/heads/main.zip) 解压。之后在这个目录里打开 Claude Code，输入 `/setup-os`。 第一次用？在 Claude Code 里打开项目并运行 `/athena-setup`：安装以对话方式一层层进行，写入之前先给你看干跑结果。",
-      "quick_result": "基础工具装好了，仓库落在 `~/athena`，`/setup-os` 准备好问你想要什么。",
+      "quick_result": "基础工具就位，仓库在 `~/athena`，`/athena-setup` 准备好问你想要什么。",
       "compare": [
         [
           "**Athena**",
@@ -212,7 +212,7 @@
         "恢复：`athena-update` 先备份，再展示差异，然后才应用改动。"
       ],
       "safety_tail": "在存有重要数据的机器上运行 Athena 之前，请先读 [SECURITY.md](SECURITY.md)。",
-      "status": "状态：面向 macOS 的公开参考实现。自动检查覆盖 shell 语法、模板、卫生、智能体契约和洁净渲染。",
+      "status": "状态：面向 macOS 的公开参考实现。检查覆盖语法、模板、卫生和洁净渲染。",
       "limits": [
         "只支持 macOS：Homebrew 的密码提示、Xcode 的弹窗和 launchd 的行为都与平台有关。",
         "在全新的 Mac 上首次安装，仍然需要人工的验收清单。",
@@ -220,7 +220,7 @@
         "私有仓库、凭据和个人知识属于你，公开克隆无法验证它们。",
         "第三方工具的版本和登录方式按它们自己的节奏变化。"
       ],
-      "docs": "想看得更深：[完整参考](docs/DETAILS.md)、[功能说明](docs/FEATURES.en.md)、[文件系统契约](rules/structure.md)、[路线图](specs/00-roadmap.md) 和 [真机验收](smoke/live-acceptance.md)。",
+      "docs": "想更深：[完整参考](docs/DETAILS.md)、[功能说明](docs/FEATURES.en.md)、[文件系统契约](rules/structure.md)、[路线图](specs/00-roadmap.md)、[真机验收](smoke/live-acceptance.md)。",
       "license": "MIT。见 [LICENSE](LICENSE)。",
       "welcome": "你好。我把自己的配置手动搬到新 Mac 上太多次，每次都忘掉一半：规则、技能、钩子、注册表、克隆好的项目。\n\nAthena 把这套配置变成一段程序，而不是一段记忆。如果它能在一个晚上把环境还给你，就拿去，把它变成你自己的。"
     }
